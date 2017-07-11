@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>可调式直流稳压、稳流电源</title>
+	<link rel="stylesheet" href="API/bootstrap.min.css">
+	<link rel="stylesheet" href="API/jquery.contextMenu.min.css">
+
+	<style type="text/css">
+	/* 禁止选中 */
+	html,body{-moz-user-select: none; -khtml-user-select: none; user-select: none;}
+	/* 字体 */
+	@font-face{
+    	font-family: myDS;
+    	src:url("API/font/DS-DIGI.TTF");
+ 	}
+	</style>
+</head>
+<body>
+
+	<div class="btn title" style="background-color: #1caf9a;font-size: 30px;line-height: 30px ;width: 100%;">
+		可调式直流稳压、稳流电源
+	</div>
+
+<div class="container-fluid">
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="740">
+		<!-- 图片 -->
+		<image x="200" y="-10" xlink:href="images/DF1731SL10A.png" height="740" width="1200" />
+		<!-- power -->
+		<rect class="power" x="450" y="562" rx="20" rx="20" fill="transparent" height="44" width="112"  ></rect>
+		<defs>
+			<!-- 显示框 -->
+			<g id="displayer">
+				<rect class="display" x="0" y="0" rx="10" ry="10" height="60" width="150" fill="#d0cc5a" />
+				<text x="70" y="40" fill="black" style="font-size: 40px;" font-family="myDS" >0.00</text>
+			</g>
+			<!-- 旋钮 -->
+			<g id="btn">
+				<circle cx="0" cy="0" r="40"  fill="transparent"/>
+			</g>
+
+			<!-- 指示灯 -->
+			<g id="light">
+				<circle cx="0" cy="0" r="8" fill="#fead97"></circle>	
+			</g>
+
+			<!-- 二路独立、串联、并联控制开关 -->
+			<g id="hold">
+				<rect x="0" y="0" height="30" width="18" fill="#d6d0c5"></rect>
+			</g>
+		</defs>
+
+		<!-- 显示框 -->
+		<use xlink:href="#displayer" x="448" y="264" id="display1"/>
+		<use xlink:href="#displayer" x="640" y="264" id="display2"/>
+		<use xlink:href="#displayer" x="828" y="264" id="display3"/>
+		<use xlink:href="#displayer" x="1018" y="264" id="display4"/>
+		<!-- 旋钮 -->
+		<use xlink:href="#btn" x="520" y="456" id="btn1"/>
+		<use xlink:href="#btn" x="716" y="456" id="btn2"/>
+		<use xlink:href="#btn" x="908" y="456" id="btn3"/>
+		<use xlink:href="#btn" x="1098" y="456" id="btn4" />
+		<!-- 指示灯 -->
+		<use xlink:href="#light" x="590" y="480" id="light1"/>
+		<use xlink:href="#light" x="647" y="480" id="light2"/>
+		<use xlink:href="#light" x="970" y="480" id="light3"/>
+		<use xlink:href="#light" x="1030" y="480" id="light4"/>
+		<!-- 二路独立、串联、并联控制开关 -->
+		<use xlink:href="#hold" x="776" y="458" id="hold1"/>
+		<use xlink:href="#hold" x="826" y="458" id="hold2"/>
+
+	</svg>
+</div>
+<script type="text/javascript" src="API/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src=""></script>
+
+</body>
+</html>
