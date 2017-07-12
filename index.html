@@ -28,51 +28,53 @@
 		<image x="200" y="-10" xlink:href="images/DF1731SL10A.png" height="740" width="1200" />
 		<!-- power -->
 		<rect class="power" x="450" y="562" rx="20" rx="20" fill="transparent" height="44" width="112"  ></rect>
-		<defs>
-			<!-- 显示框 -->
-			<g id="displayer">
-				<rect class="display" x="0" y="0" rx="10" ry="10" height="60" width="150" fill="#d0cc5a" />
-				<text x="70" y="40" fill="black" style="font-size: 40px;" font-family="myDS" >0.00</text>
-			</g>
-			<!-- 旋钮 -->
-			<g id="btn">
-				<circle cx="0" cy="0" r="40"  fill="transparent"/>
-			</g>
-
-			<!-- 指示灯 -->
-			<g id="light">
-				<circle cx="0" cy="0" r="8" fill="#fead97"></circle>	
-			</g>
-
-			<!-- 二路独立、串联、并联控制开关 -->
-			<g id="hold">
-				<rect x="0" y="0" height="30" width="18" fill="#d6d0c5"></rect>
-			</g>
-		</defs>
 
 		<!-- 显示框 -->
-		<use xlink:href="#displayer" x="448" y="264" id="display1"/>
-		<use xlink:href="#displayer" x="640" y="264" id="display2"/>
-		<use xlink:href="#displayer" x="828" y="264" id="display3"/>
-		<use xlink:href="#displayer" x="1018" y="264" id="display4"/>
+		<rect x="448" y="264" id="display1" class="display" rx="10" ry="10" height="60" width="150" fill="#d0cc5a" ></rect>
+		<rect x="640" y="264" id="display1" class="display" rx="10" ry="10" height="60" width="150" fill="#d0cc5a" ></rect>
+		<rect x="828" y="264" id="display1" class="display" rx="10" ry="10" height="60" width="150" fill="#d0cc5a" ></rect>
+		<rect x="1018" y="264" id="display1" class="display" rx="10" ry="10" height="60" width="150" fill="#d0cc5a" ></rect>
+		<!-- 文本框 -->
+		<text x="490" y="308" fill="black" style="font-size: 40px;" font-family="myDS" id="text1" class="text">0.00</text>
+		<text x="680" y="308" fill="black" style="font-size: 40px;" font-family="myDS" id="text2" class="text">0.00</text>
+		<text x="870" y="308" fill="black" style="font-size: 40px;" font-family="myDS" id="text3" class="text">0.00</text>
+		<text x="1060" y="308" fill="black" style="font-size: 40px;" font-family="myDS" id="text4" class="text">0.00</text>
 		<!-- 旋钮 -->
-		<use xlink:href="#btn" x="520" y="456" id="btn1"/>
-		<use xlink:href="#btn" x="716" y="456" id="btn2"/>
-		<use xlink:href="#btn" x="908" y="456" id="btn3"/>
-		<use xlink:href="#btn" x="1098" y="456" id="btn4" />
+		<g class="knob">
+		    <g class="sigknob" id="sigkn1" ch="1"">
+		        <circle cx="520" cy="456" r="40" fill="transparent" opacity="0"></circle>
+		        <circle class="sigknobp" cx="520" cy="456" r="0.1" fill="transparent" opacity="0"></circle>
+		    </g>
+		    <g class="sigknob" id="sigkn2" ch="2" >
+		        <circle cx="716" cy="456" r="30" fill="transparent" opacity="0"></circle>
+		        <circle class="sigknobp" cx="716" cy="456" r="0.1" fill="transparent" opacity="0"></circle>
+		    </g>
+		    <g class="sigknob" id="sigkn3" ch="3">
+		        <circle cx="908" cy="456" r="30" fill="transparent" opacity="0"></circle>
+		        <circle class="sigknobp" cx="908" cy="456" r="0.1" fill="transparent" opacity="0"></circle>
+		    </g>
+		    <g class="sigknob" id="sigkn4" ch="4">
+		        <circle cx="1098" cy="456" r="30" fill="transparent" opacity="0"></circle>
+		        <circle class="sigknobp" cx="1098" cy="456" r="0.1" fill="transparent" opacity="0"></circle>
+		    </g>
+		</g>
+
 		<!-- 指示灯 -->
-		<use xlink:href="#light" x="590" y="480" id="light1"/>
-		<use xlink:href="#light" x="647" y="480" id="light2"/>
-		<use xlink:href="#light" x="970" y="480" id="light3"/>
-		<use xlink:href="#light" x="1030" y="480" id="light4"/>
+		<circle cx="590" cy="480" r="8" fill="#fead97" id="light1" class="light"></circle>	
+		<circle cx="647" cy="480" r="8" fill="#fead97" id="light2" class="light"></circle>	
+		<circle cx="970" cy="480" r="8" fill="#fead97" id="light3" class="light"></circle>	
+		<circle cx="1030" cy="480" r="8" fill="#fead97" id="light4" class="light"></circle>	
+
 		<!-- 二路独立、串联、并联控制开关 -->
-		<use xlink:href="#hold" x="776" y="458" id="hold1"/>
-		<use xlink:href="#hold" x="826" y="458" id="hold2"/>
+		<rect x="776" y="458" height="30" width="18" fill="#d6d0c5" id="hold1" class="hold"></rect>
+		<rect x="826" y="458" height="30" width="18" fill="#d6d0c5" id="hold2" class="hold"></rect>
 
 	</svg>
 </div>
 <script type="text/javascript" src="API/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src=""></script>
+<script type="text/javascript" src="API/knob.js"></script>
+<script type="text/javascript">
 
+</script>
 </body>
 </html>
