@@ -3,6 +3,9 @@ var sigmdown = false;
 var sigmover = false;
 var sigmwheel = 0;
 var sigtarget = 0;
+var power = 1;  //1,open  2,close
+var hold = true;
+
 
 var sigknobp0 = {
     x: 0,
@@ -74,45 +77,55 @@ $(function() {
     function sigsetWheelPosition(value, id) {
     	
         if(id == "sigkn1"){
-
 			var val = document.getElementById("text1").innerHTML;
-
-			if(val + value >= 0 ){
-				document.getElementById("text1").innerHTML = (Math.round(val) + value).toFixed(2) ;
+			if(val <= 0 ){
+				if(value > 0){
+					document.getElementById("text1").innerHTML = (Math.round(val) + value).toFixed(2);
+				}else{
+					document.getElementById("text1").innerHTML = "0.00";
+				}
 			}else{
-				document.getElementById("text1").innerHTML = "0.00";
+				document.getElementById("text1").innerHTML = (Math.round(val) + value).toFixed(2);
 			}
-			
 		}
 
 		if(id == "sigkn2"){
 			var val = document.getElementById("text2").innerHTML;
-
-			if(val + value >= 0 ){
-				document.getElementById("text2").innerHTML = (Math.round(val) + value).toFixed(2) ;
+			if(val <= 0 ){
+				if(value > 0){
+					document.getElementById("text2").innerHTML = (Math.round(val) + value).toFixed(2);
+				}else{
+					document.getElementById("text2").innerHTML = "0.00";
+				}
 			}else{
-				document.getElementById("text2").innerHTML = "0.00";
+				document.getElementById("text2").innerHTML = (Math.round(val) + value).toFixed(2);
 			}
 		}
 
 		if(id == "sigkn3"){
 			var val = document.getElementById("text3").innerHTML;
-
-			if(val + value >= 0 ){
-				document.getElementById("text3").innerHTML = (Math.round(val) + value).toFixed(2) ;
+			if(val <= 0 ){
+				if(value > 0){
+					document.getElementById("text3").innerHTML = (Math.round(val) + value).toFixed(2);
+				}else{
+					document.getElementById("text3").innerHTML = "0.00";
+				}
 			}else{
-				document.getElementById("text3").innerHTML = "0.00";
+				document.getElementById("text3").innerHTML = (Math.round(val) + value).toFixed(2);
 			}
 		}
 
 
 		if(id == "sigkn4"){
 			var val = document.getElementById("text4").innerHTML;
-
-			if(val + value >= 0 ){
-				document.getElementById("text4").innerHTML = (Math.round(val) + value).toFixed(2) ;
+			if(val <= 0 ){
+				if(value > 0){
+					document.getElementById("text4").innerHTML = (Math.round(val) + value).toFixed(2);
+				}else{
+					document.getElementById("text4").innerHTML = "0.00";
+				}
 			}else{
-				document.getElementById("text4").innerHTML = "0.00";
+				document.getElementById("text4").innerHTML = (Math.round(val) + value).toFixed(2);
 			}
 		}
 
@@ -165,6 +178,63 @@ $(function() {
 
     // power电源效果
 
-    
+    $(".power").on("click",function(){
+    	powerToggle();
+    })
+    function powerToggle(){
+    	if(power == 1){ //开机状态
+    		close();
+    	}else{
+    		open()
+    	}
+    }
+
+    function close(){
+    	$(".display").attr({
+    		fill: 'rgb(85, 85, 85)',
+    	});
+
+    	$(".light").attr({
+    		fill: '#9e958d',
+    	});
+    	$(".text").attr({
+    		fill: 'transparent',
+    	});
+    	$(".text").html("0.00");
+    	power = 2;
+    }
+
+    function open(){
+    	$(".display").attr({
+    		fill: '#d0cc5a',
+    	});
+
+    	$(".light").attr({
+    		fill: '#fead97',
+    	});
+
+    	$(".text").attr({
+    		fill: 'black',
+    	});
+
+    	power = 1;
+    }
+
+    // 二路独立、串联、并联控制开关
+
+   $(".hold").on("click",function(){
+   		if(hold){
+   			$(this).attr({
+   				fill: '#99F099',
+   			});
+   			hold = false;
+   		}else{
+   			$(this).attr({
+   				fill: '#d6d0c5',
+   			});
+   			hold = true;
+   		}
+   		
+   })
 
 })
