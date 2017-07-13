@@ -5,6 +5,11 @@
 	<title>连线参考</title>
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/jquery.contextMenu.min.css">
+	<style type="text/css" media="screen">
+		body{
+			overflow-y:scroll;	
+		}
+	</style>
 </head>
 <body>
 	<div class="container-fluid">
@@ -12,17 +17,21 @@
 			<!-- 逻辑分析仪 -->
 			<g transform="translate(0,100)">
 				<image class="pic" id="pic_logic" height="150" width="400" xlink:href="log-1.png"></image>
-				<circle class="logic" ys="0" cx="" cy="" r="" fill="transparent"></circle>
-				<circle class="logic" ys="0" cx="" cy="" r="" fill="transparent"></circle>
-				<circle class="logic" ys="0" cx="" cy="" r="" fill="transparent"></circle>
-				<circle class="logic" ys="0" cx="" cy="" r="" fill="transparent"></circle>
+				<circle class="logic" ys="0" cx="104" cy="134" r="10" opacity="0.1" fill="white"></circle>  <!-- transparent -->
+				<circle class="logic" ys="0" cx="128" cy="134" r="10" opacity="0.1" fill="white"></circle>
+				<circle class="logic" ys="0" cx="150" cy="134" r="10" opacity="0.1" fill="white"></circle>
+				<circle class="logic" ys="0" cx="174" cy="134" r="10" opacity="0.1" fill="white"></circle>
+				<circle class="logic" ys="0" cx="198" cy="134" r="10" opacity="0.1" fill="white"></circle>  <!-- transparent -->
+				<circle class="logic" ys="0" cx="220" cy="134" r="10" opacity="0.1" fill="white"></circle>
+				<circle class="logic" ys="0" cx="244" cy="134" r="10" opacity="0.1" fill="white"></circle>
+				<circle class="logic" ys="0" cx="266" cy="134" r="10" opacity="0.1" fill="white"></circle>
 			</g>
 			<!-- 电路图 -->
+			<g  class="circuit" id="circuit" transform="translate(400,-100)">
+				<image xlink:href="dianji.png" height="550" width="300"></image>
+			</g>
 		</svg>
-
 	</div>
-
-
 
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/d3.v3.min.js"></script>
