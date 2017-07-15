@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="" type="image/png">
+
+  <title>51单片机实验</title>
+
+  <link rel="stylesheet" href="css/bootstrap.css" >
+  <link rel="stylesheet" href="css/myfont.css" >
+  <!-- d3波形样式 -->
+  <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+	
+	<!-- 右键菜单样式 -->
+  <link rel="stylesheet" type="text/css" href="css/jquery.contextMenu.min.css">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+    .pt0:hover,.pt1:hover{
+      fill:gray;
+      opacity: 0.7;
+    }
+
+    .ll:hover{
+      opacity: 0.6;
+    }
+
+    .slide_01{
+      transition: left 0.5s;
+    }
+
+    .md02_t1{
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ffff00, 0 0 70px #ffff00, 0 0 80px #ffff00, 0 0 100px #ffff00, 0 0 150px #ffff00;
+      -webkit-text-fill-color:white;
+      font-size: 20px;
+      font-family: 'Museo';
+    }
+  </style>
+</head>
+
+<body>
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.contextMenu.min.js"></script>
+
+<!-- 主界面 -->
+<div class="board" style="background-color:white">
+  <input type="file" class="fdl" id="file" type="file" name="" style="opacity: 0;display: none">
+  <svg class="bd" id="bd" style="height: 700px;width: 1200px;background: white;display: block">
+
+    <!-- 逻分图片 -->
+    <g transform="translate(0,150)">
+      <image class="pic" id="pic_logic" height="150" width="400" xlink:href="log-1.png"></image>
+      <rect class="log_re ll" height="105" width="180" fill="white" opacity="0" x="93" y="18" data-toggle="modal" data-target="#logicboard" />
+      <circle class="log_lp ll" ms="0" addr="0x1011" cx="103" cy="135" r="10" fill="white" opacity="0"/>
+      <circle class="log_lp ll" ms="1" addr="0x1012" cx="127" cy="135" r="10" fill="white" opacity="0"/>
+      <circle class="log_lp ll" ms="2" addr="0x1013" cx="150" cy="135" r="10" fill="white" opacity="0"/>
+      <circle class="log_lp ll" ms="3" addr="0x1014" cx="174" cy="135" r="10" fill="white" opacity="0"/>
+      <circle class="log_lp ll" ms="4" addr="0x1015" cx="198" cy="135" r="10" fill="white" opacity="0"/>
+      <circle class="log_lp ll" ms="5" addr="0x1016" cx="222" cy="135" r="10" fill="white" opacity="0"/>
+      <circle class="log_lp ll" ms="6" addr="0x1017" cx="245" cy="135" r="10" fill="white" opacity="0"/>
+      <circle class="log_lp ll" ms="7" addr="0x1018" cx="268" cy="135" r="10" fill="white" opacity="0"/>
+
+    </g>
+
+    <!-- 电路图 -->
+    <g class="pic" id="pic_s51" transform="translate(400,54)">
+      <image height="550" width="476.5" xlink:href="dianji.png"></image>
+      <rect class="s51_re ll" x="164" y="426" height="40" width="140" fill="white" opacity="0" />
+      <g class="fpc" transform="translate(164,431)">
+        <rect height="30" width="140" fill="black"/>
+        <rect class="fileprg" x="10" y="2.5" height="25" width="1" fill="dodgerblue" />
+        <text class="filetext" text-anchor="middle" x="70" y="1.5em" fill="white" >下载中  0%</text>
+      </g>
+    </g>
+  </svg>
+  
+</div>
+
+<script type="text/javascript">
+  $(".fpc").hide();
+
+</script>
+
+<script type="text/javascript" src="js/lianxian_dianji.js"></script>
+
+</body>
+</html>

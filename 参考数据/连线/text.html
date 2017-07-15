@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>连线</title>
+	<style type="text/css">
+		div{
+			width: 20px;
+			height: 20px;
+			border-radius: 100%;
+			background-color: red;
+			margin-top: 100px;
+		}
+	</style>
+</head>
+<body>
+
+<script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="./js/d3.v3.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var startPt  = {x:"",y:""};
+		var endPt  = {x:"",y:""};
+		$(".pt1").click(function(e){
+			startPt.x = e.pageX;
+			startPt.y = e.pageY;
+			console.log({"start.x":startPt.x,"start.y":startPt.y});
+		})
+		$(".pt2").click(function(e){
+			endPt.x = e.pageX;
+			endPt.y = e.pageY;
+			console.log({"end.x:":endPt.x,"end.y:":endPt.y});
+			drow();
+		})
+
+		function drow(){
+			if(startPt.x !="" && endPt.x != ""){
+				path = "M%s %s Q%s %s,%s %s T%s %s",startPt.x,startPt.y,endPt.x,endPt.y,(startPt.x+endPt.x)/2,(startPt.y+endPt.y)/2,endPt.x,endPt.y;
+				d3.select("svg")
+					.append("g")
+					.attr("class","wrap")
+
+					// .select("g")
+					// .append("path")
+					// .attr({"fill":"#666","d":path})
+					
+			}
+		}
+		
+		(function(){
+			var width = 300;
+			var height = 300;
+
+			var svg = d3.select("body")
+				.append("svg") //创建svg画布
+				.attr("width",width)
+				.attr("height",height)
+				.append("g")
+				.selectAll("circle")
+				.data([{"cx":20,"cy":20},{"cx":30,"cy":40}])
+				.enter()
+				.append("circle")
+				.attr("cx",function(d,i){return d.cx})
+				.attr("cy",function(d,i){return d.cy})
+				.attr("r",7)
+
+		})()
+
+	})
+</script>
+</body>
+</html>
