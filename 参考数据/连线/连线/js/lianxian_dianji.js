@@ -55,9 +55,6 @@ d3.select("#pic_s51")
     stroke:"black"
   });
 
-    lll[i] = lll[i]>0?lll[i]:"-"lll[i];
-
-
 //连线
 var maplinelock = 0;   //连线状态 {0：普通状态,1-8：连线状态}
 var settedpoints = "",onchangept = "";
@@ -78,6 +75,7 @@ for(var i=0 ;i < 8;i++){logpsetted[i] = 0;}
 document.oncontextmenu = function(){
   return false;
 }
+
 // console.log(window);
 var $_table = $(".bd");      //svg背景
 var $_djp_01 = $(".pt1");     //电机圆点
@@ -93,13 +91,12 @@ $_table.each(function(){
       x1 = event.pageX - mapoffset.x;    //即当前点击的位置 x
       y1 = event.pageY - mapoffset.y;
       // console.log(x1,y1);
-
       if(y1 < stpoints.y){  //stpoints.x = t.parent().offset().left - $_table.offset().left + parseInt($(this).attr("cx"));
         y1 += 4;    
-        onchangept = settedpoints+" Q "+stpoints.x+" "+(stpoints.y-30)+","+(x1 + stpoints.x)/2+" "+(y1 + stpoints.y)/2+" Q "+x1+" "+(y1+30)+","+x1+" "+y1;
+        onchangept = settedpoints+" Q "+stpoints.x+" "+(stpoints.y-30)+","+(x1 + stpoints.x)/2+" "+(y1 + stpoints.y)/2+" T "+x1+" "+y1;
       }else if(y1 >= stpoints.y){
         y1 -= 4;
-        onchangept = settedpoints+" Q "+stpoints.x+" "+(stpoints.y+30)+","+(x1 + stpoints.x)/2+" "+(y1 + stpoints.y)/2+" Q "+x1+" "+(y1-30)+","+x1+" "+y1;
+        onchangept = settedpoints+" Q "+stpoints.x+" "+(stpoints.y+30)+","+(x1 + stpoints.x)/2+" "+(y1 + stpoints.y)/2+" T "+x1+" "+y1;
       }
       onchangeline.attr("d",onchangept);
       onchangeline2.attr("d",onchangept);
@@ -114,7 +111,6 @@ $_table.each(function(){
       onchangeg.remove();
       maplinelock = 0;
       settedpoints = "";
-      // console.log("你点了右键");
     }
   });
 });
@@ -135,6 +131,8 @@ $_51p_01.each(function(){     //32个接线点
       stpoints.x = t.parent().offset().left - $_table.offset().left + parseInt($(this).attr("cx"));   //32个接线点的位置
       stpoints.y = t.parent().offset().top - $_table.offset().top + parseInt($(this).attr("cy"));
 
+      console.log("p.offsetLeft:%s,bg.offsetleft:%s,cx:%s",t.parent().offset().left,$_table.offset().left,parseInt($(this).attr("cx")))
+
 
       maplinelock = 2;
       settedpoints = "M " + stpoints.x + " " + stpoints.y;
@@ -144,7 +142,7 @@ $_51p_01.each(function(){     //32个接线点
         .attr("fill","none")
         .attr("stpoint","51pdata")
         .attr("stroke-width","6")
-        .attr("d",settedpoints+"");
+        .attr("d",settedpoints);
 
       onchangeline = onchangeg.append("path")
         .attr("stroke",function(){
@@ -152,22 +150,21 @@ $_51p_01.each(function(){     //32个接线点
         })
         .attr("fill","none")
         .attr("stroke-width","5")
-        .attr("d",settedpoints+"");
+        .attr("d",settedpoints);
 
     }
-    else if(maplinelock == 3){
+    else if(maplinelock == 3){   //连线已经存在
       edpoints.x = t.parent().offset().left - $_table.offset().left + parseInt($(this).attr("cx"));
       edpoints.y = t.parent().offset().top - $_table.offset().top + parseInt($(this).attr("cy"));
       if(stpoints.y > edpoints.y )
-        settedpoints = settedpoints+" Q "+stpoints.x+" "+(stpoints.y-30)+","+(edpoints.x + stpoints.x)/2+" "+(stpoints.y+edpoints.y)/2+" Q "+edpoints.x+" "+(edpoints.y+30)+","+edpoints.x+" "+edpoints.y;
+        settedpoints = settedpoints+" Q "+stpoints.x+" "+(stpoints.y-30)+","+(edpoints.x + stpoints.x)/2+" "+(stpoints.y+edpoints.y)/2+" T "+edpoints.x+" "+edpoints.y;
       else if(stpoints.y <= edpoints.y)
-        settedpoints = settedpoints+" Q "+stpoints.x+" "+(stpoints.y+30)+","+(edpoints.x + stpoints.x)/2+" "+(stpoints.y+edpoints.y)/2+" Q "+edpoints.x+" "+(edpoints.y-30)+","+edpoints.x+" "+edpoints.y;
+        settedpoints = settedpoints+" Q "+stpoints.x+" "+(stpoints.y+30)+","+(edpoints.x + stpoints.x)/2+" "+(stpoints.y+edpoints.y)/2+" T "+edpoints.x+" "+edpoints.y;
       maplinelock = 0;
-      onchangeline.attr("d",settedpoints+"");
-      onchangeline2.attr("d",settedpoints+"");
+      onchangeline.attr("d",settedpoints);
+      onchangeline2.attr("d",settedpoints);
       settedpoints = "";
 
-      // console.log($());
       $.contextMenu({
           selector: '.mapline_log',
           callback: function(key, options) {
@@ -217,14 +214,14 @@ $_logp_01.each(function(){   //逻辑分析仪接线点
 
       stpoints.y = t.parent().offset().top - $_table.offset().top + parseInt($(this).attr("cy"));
       // console.log(stpoints);
-      maplinelock = 3;
+      maplinelock = 3;         
       settedpoints = "M " + stpoints.x + " " + stpoints.y ;
       onchangeg = d3.select(".bd").append("g").attr("class","mapline_log").attr("ms",""+s).attr("addr",t.attr("addr"));
       onchangeline2 = onchangeg.append("path")
         .attr("stroke","black")
         .attr("fill","none")
         .attr("stroke-width","6")
-        .attr("d",settedpoints+"");
+        .attr("d",settedpoints);
 
       onchangeline = onchangeg.append("path")
         .attr("stroke",function(){
@@ -232,7 +229,7 @@ $_logp_01.each(function(){   //逻辑分析仪接线点
         })
         .attr("fill","none")
         .attr("stroke-width","5")
-        .attr("d",settedpoints+"");
+        .attr("d",settedpoints);
 
       // $(".A2_table").css("cursor","url('myimages/111.cur')");
     }
@@ -242,7 +239,7 @@ $_logp_01.each(function(){   //逻辑分析仪接线点
 });
 
 
-$_djp_01.each(function(){
+$_djp_01.each(function(){    //电机圆点
 
   $(this).click(function(){
     var t = $(this);
@@ -253,16 +250,16 @@ $_djp_01.each(function(){
       edpoints.y = t.parent().offset().top - $_table.offset().top + parseInt($(this).attr("cy"));
 
       if(stpoints.y > edpoints.y )
-        settedpoints = settedpoints+" Q "+stpoints.x+" "+(stpoints.y-30)+","+(edpoints.x + stpoints.x)/2+" "+(stpoints.y+edpoints.y)/2+" Q "+edpoints.x+" "+(edpoints.y+30)+","+edpoints.x+" "+edpoints.y;
+        settedpoints = settedpoints+" Q "+stpoints.x+" "+(stpoints.y-30)+","+(edpoints.x + stpoints.x)/2+" "+(stpoints.y+edpoints.y)/2+" T "+edpoints.x+" "+edpoints.y;
       else if(stpoints.y <= edpoints.y)
-        settedpoints = settedpoints+" Q "+stpoints.x+" "+(stpoints.y+30)+","+(edpoints.x + stpoints.x)/2+" "+(stpoints.y+edpoints.y)/2+" Q "+edpoints.x+" "+(edpoints.y-30)+","+edpoints.x+" "+edpoints.y;
+        settedpoints = settedpoints+" Q "+stpoints.x+" "+(stpoints.y+30)+","+(edpoints.x + stpoints.x)/2+" "+(stpoints.y+edpoints.y)/2+" T "+edpoints.x+" "+edpoints.y;
       maplinelock = 0;
       onchangeg.attr("addr",t.attr("addr"));
-      onchangeline.attr("d",settedpoints+"");
-      onchangeline2.attr("d",settedpoints+"");
+      onchangeline.attr("d",settedpoints);
+      onchangeline2.attr("d",settedpoints);
       settedpoints = "";
 
-      // console.log($());
+
       $.contextMenu({
           selector: '.mapline',
           callback: function(key, options) {
@@ -271,7 +268,7 @@ $_djp_01.each(function(){
                 s51psetted[parseInt($(this).attr("ms"))] = 0;
                 websend_fpga(parseInt($(this).attr("addr")),0xffff);
                 console.log("addr: %s,val: %s",$(this).attr("addr"),(0xffff).toString(16));
-                // console.log("51linedelete",parseInt($(this).attr("ms")));
+
               }
               if(key == "deleteAll"){
                 $(".mapline").remove();
@@ -287,16 +284,10 @@ $_djp_01.each(function(){
           items: {
               "delete": {name: "删除连线", icon: "delete"},
               "deleteAll": {name: "删除所有连线", icon: "delete"},
-              // "sep1": "---------",
-              // "quit": {name: "Quit", icon: function(){
-              //     return 'context-menu-icon context-menu-icon-quit';
-              // }}
           }
       });
 
       s51psetted[s51_setsign] = 1;
-      // console.log(deviceId);
-      // websend_fpga((0x2010+parseInt(t.attr("val"))+1),(parseInt($(".pt0[ms="+s51_setsign+"]").attr("val")) & 0xff));
       console.log('addr: 0x%s,val: 0x%s',(0x2010+parseInt(t.attr("val"))+1).toString(16),(parseInt($(".pt0[ms="+s51_setsign+"]").attr("val")) & 0xff).toString(16));
     }
 
