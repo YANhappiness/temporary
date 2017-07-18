@@ -88,7 +88,7 @@ $_table.each(function(){
     if(maplinelock != 0)
     {
       var x1,y1,mapoffset={x:$_table.offset().left,y:$_table.offset().top};
-      x1 = event.pageX - mapoffset.x;    //即当前点击的位置 x
+      x1 = event.pageX - mapoffset.x;    //即当前鼠标位置 x
       y1 = event.pageY - mapoffset.y;
       // console.log(x1,y1);
       if(y1 < stpoints.y){  //stpoints.x = t.parent().offset().left - $_table.offset().left + parseInt($(this).attr("cx"));
@@ -122,7 +122,7 @@ $_51p_01.each(function(){     //32个接线点
     var t = $(this);
     var s = parseInt(t.attr("ms"));
     var tpc = t.parent().attr("class")  //父节点class为51pg0、1、2、3
-    // alert(tpc)
+    
     s51_setsign = s;
 
     if(maplinelock == 0 && s51psetted[s] == 0)   // 32个接线点的ms值 ==0    连线状态==0
@@ -151,7 +151,6 @@ $_51p_01.each(function(){     //32个接线点
         .attr("fill","none")
         .attr("stroke-width","5")
         .attr("d",settedpoints);
-
     }
     else if(maplinelock == 3){   //连线已经存在
       edpoints.x = t.parent().offset().left - $_table.offset().left + parseInt($(this).attr("cx"));
@@ -170,9 +169,6 @@ $_51p_01.each(function(){     //32个接线点
           callback: function(key, options) {
               if(key == "delete"){
                 $(this).remove();
-                logpsetted[parseInt($(this).attr("ms"))] = 0;
-                websend_fpga(parseInt($(this).attr("addr")),0xffff);
-                console.log("addr: %s,val: %s",$(this).attr("addr"),(0xffff).toString(16));
               }
               if(key == "deleteAll"){
                 $(".mapline").remove();
@@ -181,7 +177,7 @@ $_51p_01.each(function(){     //32个接线点
                 for(var i=0 ;i < 32;i++){s51psetted[i] = 0;}
                 for(var i=0 ;i < 4;i++){oscp01setted[i] = 0;}
                 for(var i=0 ;i < 8;i++){logpsetted[i] = 0;}
-                websend_fpga(0x2000,0x00);
+                
                 console.log("addr: 0x2000,val: 0x00");
               }
           },
@@ -191,9 +187,6 @@ $_51p_01.each(function(){     //32个接线点
           }
       });
 
-      logpsetted[log_setsign] = 1;
-      // console.log(deviceId);
-      // websend_fpga((0x1010+parseInt($(".log_lp[ms="+log_setsign+"]").attr("ms"))+1),((t.attr("val")) & 0xff));
       console.log("addr: 0x%s,val: 0x%s",(0x1010+parseInt($(".log_lp[ms="+log_setsign+"]").attr("ms"))+1).toString(16),((t.attr("val")) & 0xff).toString(16));
     }
 
@@ -249,12 +242,12 @@ $_djp_01.each(function(){    //电机圆点
       edpoints.x = t.parent().offset().left - $_table.offset().left + parseInt($(this).attr("cx"));
       edpoints.y = t.parent().offset().top - $_table.offset().top + parseInt($(this).attr("cy"));
 
+      console.log(edpoints.x+","+edpoints.y);
       if(stpoints.y > edpoints.y )
         settedpoints = settedpoints+" Q "+stpoints.x+" "+(stpoints.y-30)+","+(edpoints.x + stpoints.x)/2+" "+(stpoints.y+edpoints.y)/2+" T "+edpoints.x+" "+edpoints.y;
       else if(stpoints.y <= edpoints.y)
         settedpoints = settedpoints+" Q "+stpoints.x+" "+(stpoints.y+30)+","+(edpoints.x + stpoints.x)/2+" "+(stpoints.y+edpoints.y)/2+" T "+edpoints.x+" "+edpoints.y;
       maplinelock = 0;
-      onchangeg.attr("addr",t.attr("addr"));
       onchangeline.attr("d",settedpoints);
       onchangeline2.attr("d",settedpoints);
       settedpoints = "";
@@ -265,9 +258,9 @@ $_djp_01.each(function(){    //电机圆点
           callback: function(key, options) {
               if(key == "delete"){
                 $(this).remove();
-                s51psetted[parseInt($(this).attr("ms"))] = 0;
-                websend_fpga(parseInt($(this).attr("addr")),0xffff);
-                console.log("addr: %s,val: %s",$(this).attr("addr"),(0xffff).toString(16));
+                // s51psetted[parseInt($(this).attr("ms"))] = 0;
+                // // websend_fpga(parseInt($(this).attr("addr")),0xffff);
+                // console.log("addr: %s,val: %s",$(this).attr("addr"),(0xffff).toString(16));
 
               }
               if(key == "deleteAll"){
