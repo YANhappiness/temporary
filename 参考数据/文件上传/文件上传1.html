@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">分段读取文件：</div>
+            <div class="panel-body">
+                <input type="file" id="file" />
+                <br />
+                <input type="button" value="中止" onclick="stop()" />
+                <input type="button" value="继续" id="continue" />
+                <progress id="progressOne" style="width:400px;" max="100" value="0"></progress>
+                <blockquote id="Status" style="word-break:break-all;"></blockquote>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+    // 文件上传
+    $(function() {
+        var fileBox = document.getElementById("file");
+        var reader = null; //读取操作文件
+        var culoaded = 0; //当前已经读取总数
+        var step = 1024 * 256; //每次读取文件大小，字节数
+        var file = null; //当前读取的文件对象
+        var enableRead = true; //是否可以读取文件
+        var total = 0; //记录当前文件总字节数
+        var startTime = null; //标记开始上传时间
+        fileBox.onchange = function() {
+            //获取文件对象
+            file = this.files[0];
+            total = file.size;
+            console.log("文件大小：%s", total);
+            //console.log(file);	//{文件的修改时间，名称，大小}
+            if (ws == null) {
+                if (window.confirm("建立与服务器连接失败,确定重新连接吗？")) {
+                    createScoket(function() {
+                        bindReader();
+                    })
+                }
+                return;
+            }
+            bindReader();
+        }
+
+        //绑定reader
+        function bindReader() {
+            culoaded = 0; //当前已经读取的文件总数
+            startTime = new Date();
+            enableRead = true;
+            reader = new FileReader();   //web API
+
+            //读取操作成功后触发
+            reader.onload = function(e) {   
+                console.log('读取总数:' + e.loaded); //已读取文件数
+                if (enableRead == false) {
+                    return false;
+                }
+
+                //根据当前缓冲区来控制客户端读取速度
+                if (ws.bufferedAmount > step * 10) {
+                    setTimeout(function() {
+                        console.log(' ---->waitinging...');
+                        loadSuccess(e.loaded);
+                    }, 30)
+                } else {
+                    //继续读取
+                    loadSuccess(e.loaded);
+                }
+            }
+            //开始读取
+            readBlob();
+        }
+
+
+        function loadSuccess(loaded) { //读取文件成功处理
+            var blob = reader.result; //文件分段上传
+            if (culoaded == 0) { //发送文件名
+                ws.send(file.name);
+            } else {
+                ws.send(blob);
+            }
+
+            //如果没有读完，继续
+            culoaded += loaded;
+            if (culoaded < total) {
+                readBlob();
+            } else { //读取完成
+                console.log('总共上传:' + culoaded + ',总共用时:' + (new Date().getTime() - startTime.getTime()) / 1000)
+            }
+
+            //显示结果进度
+            var percent = (culoaded / total) * 100;
+            document.getElementById('Status').innerText = percent;
+            document.getElementById('progressOne').value = percent;
+        }
+
+        function readBlob() { //指定开始位置，分块读取文件
+            var blob = file.slice(culoaded, culoaded + step);
+            reader.readAsArrayBuffer(blob);
+
+        }
+
+        function stop() { //终止读取操作
+            console.info('终止，当前已经读取总数:%s', culoaded);
+            enableRead = false;
+            reader.abort(); //终止reader()
+        }
+
+        //继续读取操作
+        $('#continue').on('click',function(){
+            console.log('继续读取：' + culoaded);
+            enableRead = true;
+            readBlob();
+        })
+
+        //创建和服务器的WebSocket连接
+        function createScoket() {
+            var url = 'ws://localhost:8181'
+            ws = new WebSocket(url);
+            ws.onopen = function() {
+                console.log('connected成功');
+
+                ws.onmessage = function(e) { //获取数据
+                    var data = e.data;
+                    if (isNaN(data) == false) {
+                        console.log('当前上传成功' + data);
+                    } else {
+                        console.info(data);
+                    }
+                }
+            }
+
+            ws.onclose = function(e) { //终止客户端读取
+                stop()
+                console.log('连接断开');
+            }
+
+            ws.onerror = function(e) {
+                stop();
+                console.info(e);
+                console.log('传输中发生异常');
+            }
+        }
+        //页面加载完建立连接
+        createScoket()
+    });
+    </script>
+</body>
+
+</html>

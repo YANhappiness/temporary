@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <title>实验系统</title>
+</head>
+
+<body>
+
+  
+  <div class="content">
+
+    <div class="expage expage_3" style="position: absolute;">  
+      <div style=""><img src="ercikaifasy.png" style="height: 400px"></div>
+      <input type="file" class="fdl" id="file" ms="4" style="position: absolute;background-color: transparent;opacity: 0.5;top: 282px;left: 505px;height: 53px;width: 53px;opacity: 0;" />
+      <input type="file" class="fdl" id="file" ms="5" style="position: absolute;background-color: transparent;opacity: 0.5;top: 504px;left: 505px;height: 53px;width: 53px;opacity: 0;" />
+    </div><!-- 二次开发 -->
+
+  </div><!-- content -->
+
+<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="websocket.js"></script>
+<!-- WebSocket上传  -->
+<script type="text/javascript" src="fileupload.js"></script>
+
+<!-- 页面初始和重置事件 -->
+<script type="text/javascript">
+  (function(){
+    $(".fdl").each(function(){
+      $(this).click(function(){
+        console.log(this.files);
+        deviceId = parseInt($(this).attr("ms"));
+        console.log("clickfile",fileuping);
+      });
+    });
+  })();
+
+</script>
+</body>
+</html>
