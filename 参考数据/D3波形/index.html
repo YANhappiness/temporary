@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>波形案例</title>
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container" id="wrap" style="background-color: black;margin-top: 20px;width: 800px;height: 500px">
+    </div>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/d3/3.0.0/d3.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var width = 770;
+        var height = 500;
+        var linePath = d3.svg.line() //线段生成器
+        pathMargin = { top: 10, left: 10 }
+        maxWidth = 750;
+        maxHeight = 480;
+        svg = d3.select("#wrap")
+            .append("svg")
+            .attr("class", "svg")
+            .attr("width", width)
+            .attr("height", height)
+
+        pathWrap = svg.append('g') //框
+            .attr("transform", 'translate(' + pathMargin.top + ',' + pathMargin.left + ')')
+            .attr('class', 'pathWrap')
+            .append('path')
+            .attr("d", linePath([
+                [0, 0],
+                [0, maxHeight],
+                [maxWidth, maxHeight],
+                [maxWidth, 0],
+                [0, 0]
+            ]))
+            .attr("stroke", "white")
+            .attr("fill", "none")
+            .attr("stroke-width", "1px")
+
+        var pathV = svg.append('g') //横线
+            .attr("transform", 'translate(' + pathMargin.top + ',' + pathMargin.left + ')')
+            .attr('class', 'pathV')
+            .selectAll("path")
+            .data(new Array(9))
+            .enter()
+            .append("path")
+            .attr("d", function(d, i) {
+                return linePath([
+                    [maxWidth / 10 * (i + 1), 0],
+                    [maxWidth / 10 * (i + 1), maxHeight]
+                ])
+            })
+            .attr("stroke", "#bbb")
+            .attr("stroke-dasharray", "5.5")
+            .attr("stroke-width", "1")
+            .attr("shape-rendering", "crispEdges")
+
+        var pathH = svg.append("g") //竖线
+            .attr("transform", 'translate(' + pathMargin.top + ',' + pathMargin.left + ')')
+            .attr('class', 'pathH')
+            .selectAll("path")
+            .data(new Array(7))
+            .enter()
+            .append("path")
+            .attr("d", function(d, i) {
+                return linePath([
+                    [0, maxHeight / 8 * (i + 1)],
+                    [maxWidth, maxHeight / 8 * (i + 1)]
+                ])
+            })
+            .attr("stroke", "#bbb")
+            .attr("stroke-dasharray", "5.5")
+            .attr("stroke-width", "1")
+            .attr("shape-rendering", "crispEdges")
+
+
+        // getRandomInt()
+        var time = setInterval(getRandomInt,1000)
+        //绘制波形
+       
+            var maxWidth = 750;
+            var maxHeight = 480;
+            var oscxScale = d3.scale.linear() //定义刻度标尺
+                .domain([0,100])
+                .range([0,maxWidth - pathMargin.left])
+            var oscyScale = d3.scale.linear()
+                .domain([-400,400])
+                .range([maxHeight - pathMargin.top ,0])
+
+            var xAxis = d3.svg.axis() //绘制xy轴
+                .scale(oscxScale)
+                .orient('bottom')
+
+            var yAxis = d3.svg.axis()
+                .scale(oscyScale)
+                .orient('left')
+
+            wave = svg.append('g') //将绘制好的坐标轴添加到svg
+                .attr("class", "x axis")
+                .attr("transform","translate(10,484)")
+                .call(xAxis);
+
+            wave = svg.append('g')
+                .attr("class", "y axis")
+                .attr("transform","translate(10,10)")
+                .call(yAxis)
+
+            svg.append("clipPath")
+              .attr("id", "oscclip")
+              .append("rect")
+              .attr("width", width)
+              .attr("height", height)
+
+            line = d3.svg.line() //开始绘制折线
+                .x(function(d,i) {
+                    return oscxScale(i)
+
+                })
+                .y(function(d,i) {
+                    return oscyScale(d)
+                })
+                .interpolate("linear")
+
+
+            svg.append('path') //将绘制好的线段添加到svg
+                .attr("class", "line")
+                .attr("transform", 'translate(' + pathMargin.top + ',' + pathMargin.left + ')')
+    })
+
+    </script>
+    <script type="text/javascript">
+                //产生随机数
+        function getRandomInt() {
+            var arr = [];
+            for (var i = 0; i < 100; i++) {
+                arr.push(Math.floor(Math.random() * (100 - (-100) + 1)) - 100);
+            }
+            console.log(arr)
+            drawLine(arr);
+        }
+
+        function drawLine(arr){
+            svg.select(".line")
+                .attr("d", line(arr))
+                .attr("fill", "none")
+                .attr("stroke", "yellow")
+                .attr("stroke-width", "1")
+                .attr("clip-path", "url(#oscclip)")
+        }
+    </script>
+</body>
+</html>
