@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>实验首页</title>
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.css">
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <style type="text/css">
+    display: block;
+    ul,
+    li,
+    ol {
+        list-style: none;
+    }
+
+    body {
+        background: url('./images/bg.jpg') no-repeat;
+        background-size: 100%;
+    }
+
+    html {
+        overflow: hidden;
+    }
+
+    .head {
+        width: 100%;
+        height: 50px;
+        background-color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .head .breadcrumb {
+        background-color: #333;
+        position: absolute;
+        left: 20px;
+        font-size: 16px;
+    }
+
+    .head .title {
+        text-align: center;
+        color: white;
+    }
+    /* 主体部分 */
+
+    .main {
+        position: absolute;
+        top: 50px;
+    }
+    /* 侧边栏 */
+
+    .main .siderbar {
+        position: absolute;
+        left: 0;
+        width: 220px;
+        height: 470px;
+    }
+
+    .siderbar .leftpanel ul {
+        padding: 0px;
+    }
+
+    .siderbar .leftpanel li {
+        border: 3px #fff solid;
+        margin: 10px;
+        padding: 10px 60px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .siderbar .barToggle {
+        height: 700px;
+        left: 220px;
+        position: absolute;
+        top: 5px;
+        background: linear-gradient(-110deg, black, white, black);
+        width: 14px;
+        transition: left 0.3s
+    }
+
+    .siderbar .barToggle span {
+        top: 350px;
+    }
+
+    .siderbar .barToggle:hover {
+        background: linear-gradient(-110deg white 7%, black 10% white 7%);
+    }
+    /* iframe content */
+
+    .content {
+        position: absolute;
+        left: 240px;
+        overflow: auto;
+        padding: 0;
+        background-color: #ccc;
+    }
+
+    .iframeTitle {
+        width: 100%;
+        background-color: white;
+        text-align: center;
+        padding: 10px 0px;
+        height: 30px;
+    }
+
+    .iframeTitle p {
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 18px;
+        margin-bottom: 0px;
+        border-bottom: 1px solid #ccc;
+    }
+    /* 侧边按钮样式 */
+
+    .mybtn {
+        border: none;
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        background: none;
+        cursor: pointer;
+        padding: 10px 60px;
+        display: inline-block;
+        /*margin: 15px 30px;*/
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        outline: none;
+        position: relative;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+    .mybtn:after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+    /* Pseudo elements for icons */
+
+    .mybtn:before {
+        font-family: 'icomoon';
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        position: relative;
+        -webkit-font-smoothing: antialiased;
+    }
+    /* Button 1e */
+
+    .btn-1e {
+        overflow: hidden;
+    }
+
+    .btn-1e:after {
+        width: 100%;
+        height: 0;
+        top: 50%;
+        left: 50%;
+        background: #fff;
+        opacity: 0;
+        -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+        -moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+        -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+        transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    }
+
+    .btn-1e:hover,
+    .btn-1e:active {
+        color: #0e83cd !important;
+    }
+
+    .btn-1e:hover:after {
+        height: 260%;
+        opacity: 1;
+    }
+
+    .btn-1ea:after {
+        height: 260%;
+        opacity: 1;
+    }
+
+    .btn-1ea {
+        color: #0e83cd !important;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid head">
+        <!-- 面包屑导航 -->
+        <ol class="breadcrumb">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">原理实验</a></li>
+            <li class="active">信道编译码实验</li>
+        </ol>
+        <!-- 标题 -->
+        <div class="title">
+            <h1>汉明码编译码及纠错性能验证</h1>
+        </div>
+    </div>
+    <div class="container main">
+        <div class="siderbar">
+            <!-- 侧边栏 -->
+            <div class="leftpanel">
+                <ul>
+                    <li class="mybtn btn-1e btn-1ea">实验原理</li>
+                    <li class="mybtn btn-1e ">实验步骤</li>
+                    <li class="mybtn btn-1e ">原理仿真</li>
+                    <li class="mybtn btn-1e ">实验操作</li>
+                    <li class="mybtn btn-1e ">二次开发</li>
+                </ul>
+            </div>
+            <div class="barToggle" data-zn="true">
+                <span class="glyphicon fb glyphicon-chevron-left toggle"></span>
+            </div>
+        </div>
+        <!-- 侧边栏结束 -->
+        <div class="container content">
+            <div class="iframeTitle">
+                <p>实验标题</p>
+            </div>
+            <div class="iframeWrap">
+                <iframe src="http://www.baidu.com" frameborder="0" class="iframe"></iframe>
+            </div>
+        </div>
+        <!-- iframe 结束-->
+    </div>
+    <script type="text/javascript">
+    $(function() {
+        var height = window.innerHeight;
+        var width = window.innerWidth;
+        var $attr = $('.siderbar .barToggle').attr("data-zn")
+        $('.iframe').css({ "width": width - 240 + "px", "height": (height - 50) + "px" })
+        $('.content').css({ "width": width - 240 + "px", "height": (height - 50) + "px" })
+        $(window).resize(function() {
+            height = window.innerHeight;
+            width = window.innerWidth;
+            console.log("height:%s,width:%s", height, width)
+            $('.siderbar .barToggle').css("height", (height - 50) + "px")
+            $('.siderbar .barToggle span').css("top", (height - 50) / 2 + "px")
+            $('.iframe').css({ "width": width - 240 + "px", "height": (height - 50) + "px" })
+            $('.content').css({ "width": width - 240 + "px", "height": (height - 50) + "px" })
+        });
+
+        $('.siderbar .barToggle').on('click', function() {
+            var $attr = $(this).attr("data-zn")
+            if ($attr === "true") {
+                $('.siderbar').animate({ "left": "-200px" }, "slow");
+                $(this).animate({ "left": "200px" }, 30);
+                $('.content').animate({ "left": 20 + "px" }, "slow");
+                $('.siderbar .barToggle span').removeClass('glyphicon-chevron-left');
+                $('.siderbar .barToggle span').addClass('glyphicon-chevron-right');
+                $('.iframe').css({ "width": width + "px", "height": (height - 50) + "px" })
+                $('.content').css({ "width": width + "px", "height": (height - 50) + "px" })
+                $(this).attr("data-zn", "false")
+            } else {
+                $('.siderbar').animate({ "left": "0px" }, "slow")
+                $(this).animate({ "left": "220px" }, 30)
+                $('.content').animate({ "left": 240 + "px" }, "slow");
+                $('.siderbar .barToggle span').removeClass('glyphicon-chevron-right')
+                $('.siderbar .barToggle span').addClass('glyphicon-chevron-left')
+                $('.iframe').animate({ "width": width - 240 + "px", "height": (height - 50) + "px" }, "slow")
+                $('.content').animate({ "width": width - 240 + "px", "height": (height - 50) + "px" }, "slow")
+                $(this).attr("data-zn", "true")
+            }
+        })
+
+        //iframe 跳转
+        $('.mybtn').on('click', function() {
+            switch ($(this).index()) {
+                case 1:
+                    $('.iframe').attr({ "src": "http://www.runoob.com/" });
+                    break;
+                case 0:
+                    $('.iframe').attr({ "src": "http://www.bootcss.com/" });
+                    break;
+                case 2:
+                    $('.iframe').attr({ "src": "http://cdn.code.baidu.com/" });
+                    break;
+                case 3:
+                    $('.iframe').attr({ "src": "http://write.blog.csdn.net/postlist" });
+                    break;
+                case 4:
+                    $('.iframe').attr({ "src": "http://www.iteye.com/" });
+                    break;
+                default:
+                    $('.iframe').attr({ "src": "http://baidu.com" });
+                    break;;
+            }
+
+            $(this).addClass("btn-1ea").siblings().removeClass("btn-1ea")
+        })
+
+
+    })
+    </script>
+</body>
+
+</html>
