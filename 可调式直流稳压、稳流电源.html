@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>可调式直流稳压、稳流电源</title>
+	<link rel="stylesheet" href="API/bootstrap.min.css">
+	<link rel="stylesheet" href="API/jquery.contextMenu.min.css">
+
+	<style type="text/css">
+	/* 禁止选中 */
+	html,body{-moz-user-select: none; -khtml-user-select: none; user-select: none;}
+	/* 字体 */
+	@font-face{
+    	font-family: myDS;
+    	src:url("API/font/DS-DIGI.TTF");
+ 	}
+	</style>
+</head>
+<body>
+
+	<div class="btn title" style="background-color: #1caf9a;font-size: 30px;line-height: 30px ;width: 100%;">
+		可调式直流稳压、稳流电源
+	</div>
+
+<div class="container-fluid">
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="720">
+		<!-- 图片 -->
+		<image x="200" y="-10" xlink:href="images/DF1731SL10A.png" height="740" width="1200" />
+		<!-- power -->
+		<rect class="power" x="450" y="562" rx="20" rx="20" fill="transparent" height="44" width="112"  ></rect>
+
+		<!-- 显示框 -->
+		<rect x="448" y="263" id="display1" class="display" rx="10" ry="10" height="63" width="152" fill="#d0cc5a" ></rect>
+		<rect x="638" y="264" id="display2" class="display" rx="10" ry="10" height="63" width="152" fill="#d0cc5a" ></rect>
+		<rect x="828" y="264" id="display3" class="display" rx="10" ry="10" height="63" width="152" fill="#d0cc5a" ></rect>
+		<rect x="1018" y="264" id="display4" class="display" rx="10" ry="10" height="63" width="152" fill="#d0cc5a" ></rect>
+		<!-- 文本框 -->
+		<text x="490" y="308" fill="black" style="font-size: 40px;" font-family="myDS" id="text1" class="text">0.00</text>
+		<text x="680" y="308" fill="black" style="font-size: 40px;" font-family="myDS" id="text2" class="text">0.00</text>
+		<text x="870" y="308" fill="black" style="font-size: 40px;" font-family="myDS" id="text3" class="text">0.00</text>
+		<text x="1060" y="308" fill="black" style="font-size: 40px;" font-family="myDS" id="text4" class="text">0.00</text>
+		<!-- 旋钮 -->
+		<g class="knob">
+		    <g class="sigknob" id="sigkn1" ch="1"">
+		        <circle cx="520" cy="456" r="40" fill="transparent" opacity="0"></circle>
+		        <circle class="sigknobp" cx="520" cy="456" r="0.1" fill="transparent" opacity="0"></circle>
+		    </g>
+		    <g class="sigknob" id="sigkn2" ch="2" >
+		        <circle cx="716" cy="456" r="30" fill="transparent" opacity="0"></circle>
+		        <circle class="sigknobp" cx="716" cy="456" r="0.1" fill="transparent" opacity="0"></circle>
+		    </g>
+		    <g class="sigknob" id="sigkn3" ch="3">
+		        <circle cx="908" cy="456" r="30" fill="transparent" opacity="0"></circle>
+		        <circle class="sigknobp" cx="908" cy="456" r="0.1" fill="transparent" opacity="0"></circle>
+		    </g>
+		    <g class="sigknob" id="sigkn4" ch="4">
+		        <circle cx="1098" cy="456" r="30" fill="transparent" opacity="0"></circle>
+		        <circle class="sigknobp" cx="1098" cy="456" r="0.1" fill="transparent" opacity="0"></circle>
+		    </g>
+		</g>
+
+		<!-- 指示灯 -->
+		<circle cx="590" cy="480" r="9" fill="#fead97" id="light1" class="light"></circle>	
+		<circle cx="647" cy="480" r="9" fill="#fead97" id="light2" class="light"></circle>	
+		<circle cx="970" cy="480" r="9" fill="#fead97" id="light3" class="light"></circle>	
+		<circle cx="1030" cy="480" r="9" fill="#fead97" id="light4" class="light"></circle>	
+
+		<!-- 二路独立、串联、并联控制开关 -->
+		<rect x="776" y="458" height="29" width="17" fill="#d6d0c5" id="hold1" class="hold"></rect>
+		<rect x="825" y="459" height="29" width="17" fill="#99F099" id="hold2" class="hold"></rect>
+	</svg>
+</div>
+<script type="text/javascript" src="API/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="API/knob.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+
+更新说明：
+
+1.可调式直流稳压、稳流电源  -新增
+
+2.基带信号  -ui重构 
+
+3.信号源   -ui重构
+
+4.旋钮双滚动条抖动   -bug  注释mouselevel mouseove  -reason：overflow：scroll;

@@ -1,80 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>可调式直流稳压、稳流电源</title>
-	<link rel="stylesheet" href="API/bootstrap.min.css">
-	<link rel="stylesheet" href="API/jquery.contextMenu.min.css">
+    <meta charset="UTF-8">
+    <title>实验系统</title>
+    <link rel="stylesheet" href="API/css/style.default.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style type="text/css">
+    body {
+        background: linear-gradient(white, #4ab9a3);
+        background-attachment: fixed;
+        z-index: -1;
+        overflow: hidden;
+    }
 
-	<style type="text/css">
-	/* 禁止选中 */
-	html,body{-moz-user-select: none; -khtml-user-select: none; user-select: none;}
-	/* 字体 */
-	@font-face{
-    	font-family: myDS;
-    	src:url("API/font/DS-DIGI.TTF");
- 	}
-	</style>
+    .bg {
+        position: absolute;
+        width: 1200px;
+        height: 750px;
+        left: 50%;
+        margin-left: -600px;
+        z-index: -1;
+    }
+
+    .wrap {
+        height: 400px;
+        width: 800px;
+        padding: 0;
+        background: white;
+        border: none;
+    }
+
+    .wrap .text {
+        font-size: 20pt;
+        text-align: center;
+        padding: 0px;
+    }
+
+
+    .wrap .btn {
+        padding: 33px 0px;
+        color: white;
+        border: none;
+    }
+    /* 按钮动画效果 */
+
+    @keyframes btnAnimation_1 {
+        0% {
+            transform: rotateX(0deg);
+        }
+        50% {
+            transform: rotateX(180deg);
+        }
+        100% {
+            transform: rotateX(360deg);
+        }
+    }
+
+    @keyframes btnAnimation_2 {
+        0% {
+            transform: rotateX(360deg);
+        }
+        50% {
+            transform: rotateX(180deg);
+        }
+        100% {
+            transform: rotateX(0deg);
+        }
+    }
+    </style>
 </head>
+
 <body>
+    <div class="container-fluid">
+        <img src="./images/mainbg.png" alt="背景图片" class="bg">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="700">
+            <!-- 指示灯 -->
+            <defs>
+                <g id="led">
+                    <rect x="10" y="0" height="4" width="8" fill="lime" class="lime"></rect>
+                    <rect x="82" y="0" height="4" width="8" fill="red" class="red"></rect>
+                </g>
+            </defs>
+            <use xlink:href="#led" x="360" y="286" />
+            <use xlink:href="#led" x="494" y="286" />
+            <use xlink:href="#led" x="628" y="286" />
+            <use xlink:href="#led" x="762" y="286" />
+            <use xlink:href="#led" x="342" y="470" />
+            <use xlink:href="#led" x="482" y="470" />
+            <use xlink:href="#led" x="622" y="470" />
+            <use xlink:href="#led" x="764" y="470" />
+            <!-- 导航菜单 -->
+            <g transform="translate(944,480)">
+                <image xlink:href="images/icon-1.png" height="50" width="50" id="icon-1" class="icon-1" data-toggle="modal" data-target="#myModal"></image>
+                <image xlink:href="images/icon-2.png" height="50" width="50" id="icon-2" class="icon-2" x="70" data-toggle="modal" data-target="#myModal"></image>
+                <image xlink:href="images/icon-3.png" height="50" width="50" id="icon-3" class="icon-3" x="140" data-toggle="modal" data-target="#myModal"></image>
+                <image xlink:href="images/icon-4.png" height="50" width="50" id="icon-4" class="icon-4" x="210" data-toggle="modal" data-target="#myModal"></image>
+            </g>
+        </svg>
+    </div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog wrap">
+            <div class="modal-content wrap">
+                <div class="modal-header" style="padding: 0;border:none;">
+                    <div class="btn" id="0" style="height: 100px;width: 800px; background-color:#333;">
+                        <span class="text">原理实验</span>
+                    </div>
+                </div>
+                <div class="modal-body wrap">
+                    <div style="height: 400px;width: 800px;background-color: transparent;position: absolute;">
+                        <div class="btn" id="1" style="height: 100px;width: 400px;position: absolute;top: 0px;left: 0px;background-color: #0390fd">
+                            <span class="text">信源编译码与时分复用实验</span>
+                        </div>
+                        <div class="btn" id="2" style="height: 100px;width: 400px;position: absolute;top: 0px;left: 400px;background-color: #900">
+                            <span class="text">信道编译码实验</span>
+                        </div>
+                        <div class="btn" id="3" style="height: 100px;width: 400px;position: absolute;top: 100px;left: 0px;background-color: #2e4678">
+                            <span class="text">二进制数字调制解调</span>
+                        </div>
+                        <div class="btn btn-warning" id="4" style="height: 100px;width: 400px;position: absolute;top: 100px;left: 400px;">
+                            <span class="text">多进制调制解调</span>
+                        </div>
+                        <div class="btn btn-success" id="5" style="height: 100px;width: 400px;position: absolute;top: 200px;left: 0px;">
+                            <span class="text">基带传输实验</span>
+                        </div>
+                        <div class="btn" id="6" style="height: 100px;width: 400px;position: absolute;top: 200px;left: 400px;background-color: #583f26">
+                            <span class="text">同步技术实验</span>
+                        </div>
+                        <div class="btn" id="7" style="height: 100px;width: 400px;position: absolute;top: 300px;left: 0px;background-color: #f38108; opacity:0.8;" >
+                            <span class="text">信道特性研究实验</span>
+                        </div>
+                        <div class="btn btn-danger" id="8" style="height: 100px;width: 400px;position: absolute;top: 300px;left: 400px;">
+                            <span class="text">伪随机序列特性研究及扩频通信</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  <!-- 模态框结束 -->
+    <script type="text/javascript" src="API/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="API/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        // 目录文本
+        var btn_text = [
+            ["原理实验", "信源编译码与时分复用实验", "信道编译码实验", "二进制数字调制解调", "多进制调制解调", "基带传输实验", "同步技术实验", "信道特性研究实验", "伪随机序列特性研究及扩频通信"],
+            ["信源编译码与时分复用实验", "PAM调制与抽样定理实验", "PCM编译码实验", "增量调制（CVSD）编译码", "时分复用/解复用（TDM）实验"],
+            ["信道编译码实验", "汉明码编译码及纠错性能验证", "卷积码编译码及纠错性能验证", "循环码编译码及纠错能力验证", "交织编译码及纠错能力验证"],
+            ["二进制数字调制解调", "ASK调制解调", "FSK调制解调", "PSK调制解调", "DPSK调制解调"],
+            ["多进制调制解调", "QPSK调制解调", "OQPSK调制解调", "DQPSK调制解调实验", "QPSK成型调制解调", "MSK调制解调", "16QAM调制解调"],
+            ["基带传输实验", "码型变换", "线路编译码", "基带传输及眼图观测", "基带成型与抽样判决实验"],
+            ["同步技术实验", "载波同步实验", "位同步提取实验", "帧同步实验"],
+            ["信道特性研究实验", "高斯白噪声信道特性研究", "衰落信道特性研究", "多径信道特性研究"],
+            ["伪随机序列特性研究及扩频通信", "伪随机序列产生及特性研究", "扩频与解扩实验", "码分多址(CDM)系统实验", "跳频通信实验"]
+        ];
 
-	<div class="btn title" style="background-color: #1caf9a;font-size: 30px;line-height: 30px ;width: 100%;">
-		可调式直流稳压、稳流电源
-	</div>
+        // 目录链接
+        var btn_link = [
+            ["", "", "", "", "", "", "", "", ""],
+            ["", "", "exPCM.html", "exCVSD.html", "", "", "", "", ""],
+            ["", "ex2-1.html", "ex2-2.html", "", "ex2-4.html", "", "", "", ""],
+            ["", "", "", "", "", "", "", "", ""],
+            ["", "", "", "exDQPSK.html", "", "", "", "", ""],
+            ["", "", "", "", "", "", "", "", ""],
+            ["", "", "", "", "", "", "", "", ""],
+            ["", "", "", "", "", "", "", "", ""],
+            ["", "", "", "", "", "", "", "", ""]
+        ];
 
-<div class="container-fluid">
-	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="740">
-		<!-- 图片 -->
-		<image x="200" y="-10" xlink:href="images/DF1731SL10A.png" height="740" width="1200" />
-		<!-- power -->
-		<rect class="power" x="450" y="562" rx="20" rx="20" fill="transparent" height="44" width="112"  ></rect>
+        var dd_msign_1 = 0; //目录层级
+        var dd_sign_1 = 0; //第一层点击位置
+        var on_off = true; //指示灯状态
 
-		<!-- 显示框 -->
-		<rect x="448" y="263" id="display1" class="display" rx="10" ry="10" height="63" width="152" fill="#d0cc5a" ></rect>
-		<rect x="638" y="264" id="display2" class="display" rx="10" ry="10" height="63" width="152" fill="#d0cc5a" ></rect>
-		<rect x="828" y="264" id="display3" class="display" rx="10" ry="10" height="63" width="152" fill="#d0cc5a" ></rect>
-		<rect x="1018" y="264" id="display4" class="display" rx="10" ry="10" height="63" width="152" fill="#d0cc5a" ></rect>
-		<!-- 文本框 -->
-		<text x="490" y="308" fill="black" style="font-size: 40px;" font-family="myDS" id="text1" class="text">0.00</text>
-		<text x="680" y="308" fill="black" style="font-size: 40px;" font-family="myDS" id="text2" class="text">0.00</text>
-		<text x="870" y="308" fill="black" style="font-size: 40px;" font-family="myDS" id="text3" class="text">0.00</text>
-		<text x="1060" y="308" fill="black" style="font-size: 40px;" font-family="myDS" id="text4" class="text">0.00</text>
-		<!-- 旋钮 -->
-		<g class="knob">
-		    <g class="sigknob" id="sigkn1" ch="1"">
-		        <circle cx="520" cy="456" r="40" fill="transparent" opacity="0"></circle>
-		        <circle class="sigknobp" cx="520" cy="456" r="0.1" fill="transparent" opacity="0"></circle>
-		    </g>
-		    <g class="sigknob" id="sigkn2" ch="2" >
-		        <circle cx="716" cy="456" r="30" fill="transparent" opacity="0"></circle>
-		        <circle class="sigknobp" cx="716" cy="456" r="0.1" fill="transparent" opacity="0"></circle>
-		    </g>
-		    <g class="sigknob" id="sigkn3" ch="3">
-		        <circle cx="908" cy="456" r="30" fill="transparent" opacity="0"></circle>
-		        <circle class="sigknobp" cx="908" cy="456" r="0.1" fill="transparent" opacity="0"></circle>
-		    </g>
-		    <g class="sigknob" id="sigkn4" ch="4">
-		        <circle cx="1098" cy="456" r="30" fill="transparent" opacity="0"></circle>
-		        <circle class="sigknobp" cx="1098" cy="456" r="0.1" fill="transparent" opacity="0"></circle>
-		    </g>
-		</g>
+        //指示灯闪烁事件
+        setInterval(led, 500)
+        function led() {
+            $('.lime').each(function() {
+                if (on_off === true) {
+                    $(this).attr("fill", "lime");
+                    on_off = false;
+                } else {
+                    $(this).attr("fill", "gray");
+                    on_off = true;
+                }
+            })
+        }
 
-		<!-- 指示灯 -->
-		<circle cx="590" cy="480" r="9" fill="#fead97" id="light1" class="light"></circle>	
-		<circle cx="647" cy="480" r="9" fill="#fead97" id="light2" class="light"></circle>	
-		<circle cx="970" cy="480" r="9" fill="#fead97" id="light3" class="light"></circle>	
-		<circle cx="1030" cy="480" r="9" fill="#fead97" id="light4" class="light"></circle>	
+        $('image').each(function() {
+            $(this).on("mouseover", function() { //鼠标移入事件
 
-		<!-- 二路独立、串联、并联控制开关 -->
-		<rect x="776" y="458" height="29" width="17" fill="#d6d0c5" id="hold1" class="hold"></rect>
-		<rect x="825" y="459" height="29" width="17" fill="#99F099" id="hold2" class="hold"></rect>
+            })
+        })
 
-	</svg>
-</div>
-<script type="text/javascript" src="API/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="API/knob.js"></script>
-<script type="text/javascript">
-
-</script>
+        // 点击目录触发事件
+        $(".btn").each(function() {
+            $(this).on("click", function() {
+            	alert($(this).text())
+            })
+        })
+    })
+    </script>
 </body>
+
 </html>

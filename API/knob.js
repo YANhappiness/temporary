@@ -55,23 +55,23 @@ $(function() {
         }
     };
 
-    function sigonMouseOver() {
-        // console.log(1);
-        $("#signal").css({
-            "overflow-y": "hidden"
-        });
+    // function sigonMouseOver() {
+    //     // console.log(1);
+    //     $("#signal").css({
+    //         "overflow": "hidden"
+    //     });
 
-        sigmover = true;
-    }
+    //     sigmover = true;
+    // }
 
-    function sigonMouseLeave(event) {
-        $("#signal").css({
-            "overflow-y": "scroll"
-        });
+    // function sigonMouseLeave(event) {
+    //     $("#signal").css({
+    //         "overflow": "hidden"
+    //     });
 
-        sigmover = false;
-        sigmwheel = 0;
-    };
+    //     sigmover = false;
+    //     sigmwheel = 0;
+    // };
 
 
     function sigsetWheelPosition(value, id) {
@@ -135,22 +135,18 @@ $(function() {
     $(".sigknob").each(function() {
         $(this).on("mousedown", sigonMouseDown);
         $(this).on("mousemove", sigonMouseMove);
-        $(this).on("mouseover", sigonMouseOver);
-        $(this).on("mouseleave", sigonMouseLeave);
+        // $(this).on("mouseover", sigonMouseOver);
+        // $(this).on("mouseleave", sigonMouseLeave);
         $("body").on("mouseup", sigonMouseUp);
         $(this).get(0).addEventListener("mousewheel", function() {
 
             // event = event || window.event;
             if (event.wheelDelta > 0 || event.detail < 0) {
                 //向上滚
-
-                // console.log("up");
                 sigmwheel = -1;
             }
             if (event.wheelDelta < 0 || event.detail > 0) {
                 //向下滚
-
-                // console.log("down");
                 sigmwheel = 1;
             }
             sigsetWheelPosition(-sigmwheel, $(this).attr("id"));
@@ -160,14 +156,10 @@ $(function() {
             // event = event || window.event;
             if (event.wheelDelta > 0 || event.detail < 0) {
                 //向上滚
-
-                console.log("up");
                 sigmwheel = -1;
             }
             if (event.wheelDelta < 0 || event.detail > 0) {
                 //向下滚
-
-                console.log("down");
                 sigmwheel = 1;
             }
             sigsetWheelPosition(-sigmwheel, $(this).attr("id"));
