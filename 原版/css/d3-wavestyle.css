@@ -1,0 +1,88 @@
+.grid .tick {
+	stroke: lightgrey;
+	opacity: 0.7;
+	shape-rendering: crispEdges;
+}
+ 
+.grid path {
+	stroke-width: 0;
+}
+ 
+.axis path {
+	fill: none;
+	stroke: #bbb;
+	shape-rendering: crispEdges;
+}
+ 
+.axis text {
+	fill: #555;
+}
+ 
+.axis line {	
+	stroke: #e7e7e7;
+	shape-rendering: crispEdges;
+}
+ 
+.axis .axis-label {
+	font-size: 14px;
+}
+ 
+.line {
+	fill: none;
+	stroke-width: 1.5px;
+}
+ 
+.dot {
+	/* consider the stroke-with the mouse detect radius? */
+	stroke: transparent;
+	stroke-width: 10px;  
+	cursor: pointer;
+}
+ 
+.dot:hover {
+	stroke: rgba(68, 127, 255, 0.3);
+}
+
+
+/*.axis2 path {
+	fill: white;
+	opacity: 0;
+	stroke: #bbb;
+	shape-rendering: crispEdges;
+}
+
+.line2 {
+	fill: none;
+	stroke-width: 1.5px;
+}
+
+.axis2 line {	
+	stroke: #e7e7e7;
+	shape-rendering: crispEdges;
+}*/
+
+.oscline {
+	fill: none;
+	stroke-width: 1px;
+}
+
+/*#CH1{
+	stroke-width: 2;
+}*/
+
+.oscaxis line {	
+	stroke: #e7e7e7;
+	shape-rendering: crispEdges;
+}
+
+.oscaxis path {
+	/*fill: white;*/
+/*	opacity: 0;
+*/	stroke: #bbb;
+	shape-rendering: crispEdges;
+}
+
+.oscline2 {
+	fill: none;
+	stroke-width: 1px;
+}

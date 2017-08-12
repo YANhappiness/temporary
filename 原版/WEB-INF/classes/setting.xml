@@ -1,0 +1,38 @@
+<setting>
+	<tcp>
+		<port>7787</port>
+	</tcp>
+	<server>
+		<ip>10.10.10.250</ip>
+		<port>12340</port>
+	</server>
+	<openoffice>
+		<path>C:\Program Files (x86)\OpenOffice 4\program\</path>
+	</openoffice>
+	<devices>
+		<A1>
+			<ip>30.30.30.101</ip>
+		</A1>
+		<A2>
+			<ip>30.30.30.102</ip>
+		</A2>
+		<A3>
+			<ip>30.30.30.103</ip>
+		</A3>
+		<A4>
+			<ip>30.30.30.104</ip>
+		</A4>
+		<A5>
+			<ip>30.30.30.105</ip>
+		</A5>
+		<A6>
+			<ip>30.30.30.106</ip>
+		</A6>
+		<A7>
+			<ip>30.30.30.107</ip>
+		</A7>
+		<A8>
+			<ip>30.30.30.108</ip>
+		</A8>
+	</devices>
+</setting>

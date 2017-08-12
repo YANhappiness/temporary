@@ -11,7 +11,7 @@
         background: linear-gradient(white, #4ab9a3);
         background-attachment: fixed;
         z-index: -1;
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 
     .bg {
@@ -68,6 +68,31 @@
             transform: rotateX(0deg);
         }
     }
+
+    .navTitle {
+        line-height: 60px;
+        font-size: 1.4em;
+    }
+
+    .homebg {
+        opacity: 0.4;
+        width: 800px;
+        height: 420px;
+        margin: -15px 0 0 -15px;
+        position: absolute;
+    }
+
+    .table>tbody>tr>td {
+        border-top: 0px;
+    }
+
+    .table>tbody>tr>td:hover {
+        background-color: #fff;
+    }
+
+    .svgText {
+        font-size: 13px;
+    }
     </style>
 </head>
 
@@ -81,6 +106,10 @@
                     <rect x="10" y="0" height="4" width="8" fill="lime" class="lime"></rect>
                     <rect x="82" y="0" height="4" width="8" fill="red" class="red"></rect>
                 </g>
+                <g id="mask">
+                    <rect fill="black" rx="5" ry="5" x="0" y="0" height="52" width="53"></rect>
+                    <text x="1" y="30" fill="white" font-size="14" class="svgText">数字信号</text>
+                </g>
             </defs>
             <use xlink:href="#led" x="360" y="286" />
             <use xlink:href="#led" x="494" y="286" />
@@ -91,15 +120,70 @@
             <use xlink:href="#led" x="622" y="470" />
             <use xlink:href="#led" x="764" y="470" />
             <!-- 导航菜单 -->
-            <g transform="translate(944,480)">
-                <image xlink:href="images/icon-1.png" height="50" width="50" id="icon-1" class="icon-1" data-toggle="modal" data-target="#myModal"></image>
-                <image xlink:href="images/icon-2.png" height="50" width="50" id="icon-2" class="icon-2" x="70" data-toggle="modal" data-target="#myModal"></image>
-                <image xlink:href="images/icon-3.png" height="50" width="50" id="icon-3" class="icon-3" x="140" data-toggle="modal" data-target="#myModal"></image>
-                <image xlink:href="images/icon-4.png" height="50" width="50" id="icon-4" class="icon-4" x="210" data-toggle="modal" data-target="#myModal"></image>
+            <g transform="translate(958,445)">
+                <image xlink:href="images/icon-1.png" height="50" width="50" ms="1" class="icon" data-toggle="modal" data-target="#Modal"></image>
+                <image xlink:href="images/icon-2.png" height="50" width="50" ms="2" class="icon" x="88" data-toggle="modal" data-target="#myModal"></image>
+                <image xlink:href="images/icon-3.png" height="50" width="50" ms="3" class="icon" x="176" data-toggle="modal" data-target="#myModal"></image>
+                <image xlink:href="images/icon-4.png" height="50" width="50" ms="4" class="icon" y="80" data-toggle="modal" data-target="#myModal"></image>
+                <image xlink:href="images/icon-1.png" height="50" width="50" ms="5" class="icon" x="88" y="80" data-toggle="modal" data-target="#myModal"></image>
+                <image xlink:href="images/icon-2.png" height="50" width="50" ms="6" class="icon" x="176" y="80" data-toggle="modal" data-target="#myModal"></image>
             </g>
+            <use xlink:href="#mask" x="958" y="445" style="display: none;" class="mask" ms="1" />
         </svg>
     </div>
-    <!-- 模态框（Modal） -->
+    <!-- 数字信号处理模态框 -->
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 800px;height: 500px; margin-left: -100px;position: relative;">
+                <div class="modal-header" style="width: 800px;height: 80px;">
+                    <div class="btn btn btn-black" id="1" style="height: 80px;width: 800px;position: absolute;top: 0px;left: 0px; color: white;">
+                        <h4 class="modal-title" id="myModalLabel" style="color:white;line-height:60px"> 数字信号处理 </h4>
+                    </div>
+                </div>
+                <div class="modal-body" style="width:800px;height: 500px;">
+                    <img src="./images/homebg.jpg" class="homebg" alt="背景图片">
+                    <div class="table-responsive" style="text-indent: 6.5rem;font-size: 2rem; color: black;z-index: 2;position: relative;">
+                        <table class="table table-danger mb30" style="background-color: transparent;">
+                            <tbody>
+                                <tr>
+                                    <td ms="0">1、常见信号观测 </td>
+                                    <td ms="1">2、信号时域分析 </td>
+                                </tr>
+                                <tr>
+                                    <td ms="2">3、信号频域分析 </td>
+                                    <td ms="3">4、抽样定理 </td>
+                                </tr>
+                                <tr>
+                                    <td ms="4">5、信号卷积 </td>
+                                    <td ms="5">6、信号频率搬移 </td>
+                                </tr>
+                                <tr>
+                                    <td ms="6">7、信号尺度变换 </td>
+                                    <td ms="7">8、IIR滤波器 </td>
+                                </tr>
+                                <tr>
+                                    <td ms="8">9、FIR滤波器 </td>
+                                    <td ms="9">10、IIR滤波器和FIR滤波器性能比较 </td>
+                                </tr>
+                                <tr>
+                                    <td ms="10">11、IIR滤波器信号分解合成 </td>
+                                    <td ms="11">12、信号分解与合成 </td>
+                                </tr>
+                                <tr>
+                                    <td ms="12">13、信号谐波提取 </td>
+                                    <td ms="13">14、语音谱分析 </td>
+                                </tr>
+                                <tr>
+                                    <td ms="14">15、语音基音提取 </td>
+                                    <td ms=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog wrap">
             <div class="modal-content wrap">
@@ -128,7 +212,7 @@
                         <div class="btn" id="6" style="height: 100px;width: 400px;position: absolute;top: 200px;left: 400px;background-color: #583f26">
                             <span class="text">同步技术实验</span>
                         </div>
-                        <div class="btn" id="7" style="height: 100px;width: 400px;position: absolute;top: 300px;left: 0px;background-color: #f38108; opacity:0.8;" >
+                        <div class="btn" id="7" style="height: 100px;width: 400px;position: absolute;top: 300px;left: 0px;background-color: #f38108; opacity:0.8;">
                             <span class="text">信道特性研究实验</span>
                         </div>
                         <div class="btn btn-danger" id="8" style="height: 100px;width: 400px;position: absolute;top: 300px;left: 400px;">
@@ -138,7 +222,8 @@
                 </div>
             </div>
         </div>
-    </div>  <!-- 模态框结束 -->
+    </div>
+    <!-- 模态框结束 -->
     <script type="text/javascript" src="API/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="API/bootstrap.min.js"></script>
     <script type="text/javascript">
@@ -156,6 +241,9 @@
             ["伪随机序列特性研究及扩频通信", "伪随机序列产生及特性研究", "扩频与解扩实验", "码分多址(CDM)系统实验", "跳频通信实验"]
         ];
 
+        var menu_href = ["http:www.baidu.com", "http:www.baidu.com", "http:www.baidu.com", "http:www.baidu.com", "http:www.baidu.com", "http:www.baidu.com", "http:www.baidu.com", "http:www.baidu.com", "http:www.baidu.com", "http:www.baidu.com", "http:www.baidu.com", "http:www.baidu.com", "http:www.baidu.com", "http:www.baidu.com", "http:www.baidu.com"] //数字信号处理链接
+        
+        var menu_text = ["数字信号处理", "现代通信技术", "无线通信技术", "移动通信技术", "使用说明", "系统设置"]
         // 目录链接
         var btn_link = [
             ["", "", "", "", "", "", "", "", ""],
@@ -173,8 +261,17 @@
         var dd_sign_1 = 0; //第一层点击位置
         var on_off = true; //指示灯状态
 
+
         //指示灯闪烁事件
         setInterval(led, 500)
+
+        $(".table>tbody>tr>td").each(function() {
+            $(this).on("click", function() {
+                var index = $(this).attr("ms");
+                window.location.href = menu_text[index];
+            })
+        })
+
         function led() {
             $('.lime').each(function() {
                 if (on_off === true) {
@@ -188,7 +285,10 @@
         }
 
         $('image').each(function() {
-            $(this).on("mouseover", function() { //鼠标移入事件
+            $(this).hover(function() { //鼠标移入事件
+                var index = $(this).attr("ms");
+                // $(".mask").slideToggle("30")
+                alert($(".mask").index(0).attr("ms"));
 
             })
         })
@@ -196,7 +296,7 @@
         // 点击目录触发事件
         $(".btn").each(function() {
             $(this).on("click", function() {
-            	alert($(this).text())
+
             })
         })
     })

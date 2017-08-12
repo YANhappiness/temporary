@@ -55,25 +55,6 @@ $(function() {
         }
     };
 
-    // function sigonMouseOver() {
-    //     // console.log(1);
-    //     $("#signal").css({
-    //         "overflow": "hidden"
-    //     });
-
-    //     sigmover = true;
-    // }
-
-    // function sigonMouseLeave(event) {
-    //     $("#signal").css({
-    //         "overflow": "hidden"
-    //     });
-
-    //     sigmover = false;
-    //     sigmwheel = 0;
-    // };
-
-
     function sigsetWheelPosition(value, id) {
     	
         if(id == "sigkn1"){
@@ -131,16 +112,13 @@ $(function() {
 
     }
 
-    // console.log(d3.selectAll(".sigknob"));
     $(".sigknob").each(function() {
         $(this).on("mousedown", sigonMouseDown);
         $(this).on("mousemove", sigonMouseMove);
-        // $(this).on("mouseover", sigonMouseOver);
-        // $(this).on("mouseleave", sigonMouseLeave);
         $("body").on("mouseup", sigonMouseUp);
         $(this).get(0).addEventListener("mousewheel", function() {
 
-            // event = event || window.event;
+            event = event || window.event;
             if (event.wheelDelta > 0 || event.detail < 0) {
                 //向上滚
                 sigmwheel = -1;
@@ -153,7 +131,7 @@ $(function() {
         });
         $(this).get(0).addEventListener("DOMMouseScroll", function() {
 
-            // event = event || window.event;
+            event = event || window.event;
             if (event.wheelDelta > 0 || event.detail < 0) {
                 //向上滚
                 sigmwheel = -1;

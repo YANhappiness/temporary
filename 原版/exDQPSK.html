@@ -1,0 +1,1127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- 标题图标 -->
+  <link rel="shortcut icon" href="" type="image/png">
+
+  <link rel="stylesheet" type="text/css" href="mycss/style.default.css" />
+  <!-- bootstrap -->
+  <!-- <link rel="stylesheet" type="text/css" href="mycss/bootstrap/bootstrap.css" /> -->
+  <!-- button样式 -->
+  <link rel="stylesheet" type="text/css" href="mycss/btn_css/component.css" />
+  <!-- contextmenu -->
+  <link rel="stylesheet" type="text/css" href="mycss/contextmenu/jquery.contextMenu.min.css" />
+
+  <title>实验系统</title>
+
+  <style type="text/css">
+    html{
+      overflow-y: auto;
+      overflow-x: auto;
+      /*min-width: 1000px;*/
+    }
+
+    div{
+      padding: 0;
+      margin: 0;
+    }
+
+    body{
+      margin: 0;
+      padding: 0;
+      background-color: rgba(0,0,0,0.9);
+    }
+
+    .title{
+      background-color: transparent;
+      color: white;
+      font-family: inherit;
+      font-size: 40px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+    }
+
+    .main{
+      background-image: url('images/bk_01.jpg');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      /*background-attachment: fixed;
+      background-position: 0 50px;*/
+    }
+
+    .leftpanel{
+      /*overflow-y: auto;*/
+      position: absolute;
+      width: 200px;
+      padding: 5px 15px;
+      /*min-height: 500px;*/
+      background-color: transparent;
+      transition: left 0.3s;
+    }
+
+    .l_canvasCover{
+      position: absolute;
+    }
+
+    .l_listCover{
+      position: absolute;
+      z-index: 100;
+    }
+
+    .showlist{
+      background: linear-gradient(-110deg,black, white, black);
+      width: 14px;
+      text-align: center;
+      position: absolute;
+      top: 5px;
+      left: 220px;
+      z-index: 100;
+      transition: left 0.3s;
+    }
+
+    .mybtn{
+      margin-bottom: 10px; 
+    }
+
+    .fb{
+      font-size: 10px;
+      position: absolute;
+      left: 2px;
+    }
+
+    .content{
+      position: absolute;
+      left: 240px;
+      transition: left 0.3s;
+    }
+
+    .expage{
+      overflow: auto;
+      height: 100%;
+      background-color:white;
+    }
+
+    .ext_svg{
+     /* width: 1343px;
+      height: 770px;*/
+    }
+
+    .ll:hover{
+      fill: white; 
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 主界面 -->
+<div class="title">
+  <a style="font-size: 15px;position: absolute;left: 20px;color:white" href=".">首页</a>
+  <span class="glyphicon glyphicon-chevron-right" style="font-size: 10px;position: absolute;left: 50px;top:18px ;color:white"></span>
+  <a style="font-size: 15px;position: absolute;left: 62px;color:white" href=".?ms=0">原理实验</a>
+  <span class="glyphicon glyphicon-chevron-right" style="font-size: 10px;position: absolute;left: 122px;top:18px ;color:white"></span>
+  <a style="font-size: 15px;position: absolute;left: 134px;color:white" href=".?ms=4">多进制调制解调</a>
+  DQPSK调制解调实验</div>
+<div class="main" style="position: absolute;">
+  
+	<!-- 左侧边栏 -->
+	<div class="leftpanel">
+    <div class="l_canvasCover"><canvas id="cav_left"></canvas></div>
+		<div class="l_listCover">
+			
+			<button class="mybtn btn-1 btn-1e btn-1ea leftbtn" ms="1">实验原理</button>
+      <button class="mybtn btn-1 btn-1e leftbtn" ms="2">实验步骤</button>
+      <button class="mybtn btn-1 btn-1e leftbtn" ms="3">原理仿真</button>
+      <button class="mybtn btn-1 btn-1e leftbtn" ms="4">实验操作</button>
+      <button class="mybtn btn-1 btn-1e leftbtn" ms="5">二次开发</button>
+	    
+		</div>
+	</div>
+	<!-- 缩放bar -->
+  <div class="showlist" ms="1"><span class="glyphicon glyphicon-chevron-left fb"></span></div>
+  
+  <!-- content -->
+  <div class="content">
+    <!-- 实验操作 -->
+    <div class="expage extable">
+      
+      
+    </div><!-- 实验操作 -->
+
+    <!-- 实验目的/实验内容 -->
+    <div class="expage expage_1">
+      <div class="exh1_1" style="text-align: center;font-size: 20pt;line-height: 30px"><span>实验内容</span></div>
+      <iframe class="extext" src="html/3_1.html">
+      </iframe>
+    </div><!-- 实验目的/实验内容 -->
+
+    <!-- 原理仿真 -->
+    <div class="expage expage_2">
+      <!-- <div class="svgcover" id="pcmcvsd" style="display:inline-block;padding: 0;margin: 0;background-color: black"></div> -->
+    </div><!-- 原理仿真 -->
+
+    <!-- 二次开发 -->
+    <div class="expage expage_3" style="position: absolute;">  
+      <div style=""><img src="ercikaifalc.jpg"></div>
+      <div style=""><img src="ercikaifasy.png" style="height: 400px"></div>
+      <input type="file" class="fdl" id="file" ms="4" style="position: absolute;background-color: transparent;opacity: 0.5;top: 282px;left: 505px;height: 53px;width: 53px;opacity: 0;" />
+      <input type="file" class="fdl" id="file" ms="5" style="position: absolute;background-color: transparent;opacity: 0.5;top: 504px;left: 505px;height: 53px;width: 53px;opacity: 0;" />
+    </div><!-- 二次开发 -->
+
+  </div><!-- content -->
+
+</div><!-- 主界面 -->
+
+<!-- 示波器界面 -->
+<div class="modal fade" id="module01" onselectstart="return false;" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" style="min-width: 1000px;overflow: auto;">
+  <div class="modal-dialog modal-lg" style="width:100%;min-width: 1000px;max-width: 1000px;border-radius: 10px;margin: 120px auto">
+    <div class="modal-content" style="width:100%;min-width: 1000px;">
+      <div class="modal-body" style="padding:0;width:1000px;height:500px;background-image:url('osc-2.png');background-size: 1000px 496px;display: inline-block;background-repeat: no-repeat;">
+
+        <div class="svgcover" id="osc" style="display:inline-block;padding: 0;margin: 0;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PCM CVSD -->
+<div class="modal fade" id="module02" onselectstart="return false;" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="/*min-width: 1200px;*/overflow: scroll;-moz-user-select:none;">
+  <div class="modal-dialog modal-lg" style="/*width:100%;*//*min-width: 1200px;max-width: 1200px;*/height: 620px;width: 1220px;border-radius: 10px;">
+    <div class="modal-content" style="/*width:100%;*//*min-width: 1200px;*/height: 620px;width: 1220px;background-color: black">
+      <div class="modal-body" style="padding:0;/*width:1000px;height:620px;*/display: inline-block;">
+        <div class="svgcover" id="pcmcvsd" style="display:inline-block;padding: 0;margin: 0;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 信号源界面 -->
+<div class="modal fade" id="signal">
+  <div class="modal-dialog modal-lg" style="width:100%;min-width: 1000px;max-width: 1000px;margin: 120px auto">
+    <div class="modal-content" style="width:100%;min-width: 1000px;border-radius: 30px">
+      <div class="modal-body" style="padding:0;width:1000px;height:500px;background-color: silver;border-radius: 30px">
+        <svg height="500" width="1000">
+          <rect height="200" width="700" fill="black" transform="translate(30,30)" rx="20" />
+          <text id="val" font-family="myDS" font-size="160" fill="aqua" transform="translate(90,180)" >1000</text>
+          <text id="unit" font-family="myDS" font-size="160" fill="aqua" transform="translate(530,180)">Hz</text>
+          <text id="unit_1" font-family="myDS" font-size="160" fill="aqua" transform="translate(450,180)">K</text>  
+          <defs>
+            <filter id="f1" x="0" y="0" width="200%" height="200%">
+              <feOffset result="offOut" in="SourceGraphic" dx="1" dy="-2" />
+              <feBlend in="SourceGraphic" in2="offOut" mode="normal" />
+            </filter>
+
+            <filter id="f2" x="0" y="0">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+            </filter>
+          </defs>
+          
+          <!-- 信号类型 -->
+          <g class="sig_key" id="0" transform="translate(20,300)">
+            <rect height="60" width="60" rx=10 fill="#595959" opacity="0.7" filter="url(#f1)" />
+            <text transform="translate(19,20)" fill="lime">SIN</text>
+            <path d="M 0,0 Q 10 -20,20 0 T 40 0" stroke="lime" style="stroke-width:2" transform="translate(10,35)" fill="transparent" />
+          </g>
+
+          <g class="sig_key" id="1" transform="translate(90,300)">
+            <rect height="60" width="60" rx=10 fill="#595959" opacity="0.7" filter="url(#f1)" />
+            <text transform="translate(17,20)" fill="silver">SQU</text>
+            <path d="M 0,0 L 0,-20 L 20,-20 L 20,0 L 40,0 L 40,-20  " stroke="silver" style="stroke-width:2" transform="translate(10,45)" fill="transparent" />
+          </g>
+
+          <g class="sig_key" id="2" transform="translate(160,300)">
+            <rect height="60" width="60" rx=10 fill="#595959" opacity="0.7" filter="url(#f1)" />
+            <text transform="translate(19,20)" fill="silver">TRI</text>
+            <path d="M 0,0 L 10,-10 L 20,0 L 30,-10 L 40,0" stroke="silver" style="stroke-width:2" transform="translate(10,40)" fill="transparent" />
+          </g>
+
+          <g class="sig_key" id="3" transform="translate(230,300)">
+            <rect height="60" width="60" rx=10 fill="#595959" opacity="0.7" filter="url(#f1)" />
+            <text transform="translate(12,20)" fill="silver">HALF</text>
+            <path d="M 0,0 Q 10 -20,20 0 L 40,0" stroke="silver" style="stroke-width:2" transform="translate(10,40)" fill="transparent" />
+          </g>
+
+          <g class="sig_key" id="4" transform="translate(300,300)">
+            <rect height="60" width="60" rx=10 fill="#595959" opacity="0.7" filter="url(#f1)" />
+            <text transform="translate(4,20)" fill="silver">WHOLE</text>
+            <path d="M 0,0 Q 10 -20,20 0 Q 30 -20,40 0" stroke="silver" style="stroke-width:2" transform="translate(10,40)" fill="transparent" />
+          </g>
+
+          <g class="sig_key" id="5" transform="translate(370,300)">
+            <rect height="60" width="60" rx=10 fill="#595959" opacity="0.7" filter="url(#f1)" />
+            <text transform="translate(4,20)" fill="silver">TOOTH</text>
+            <path d="M 0,0 L 10,-10 L 10,0 L 20,-10 L 20,0 L 30,-10 L 30,0 L 40,-10 L 40,0" stroke="silver" style="stroke-width:2" transform="translate(10,40)" fill="transparent" />
+          </g>
+          
+          <g class="sig_key" id="6" transform="translate(440,300)">
+            <rect height="60" width="60" rx=10 fill="#595959" opacity="0.7" filter="url(#f1)" />
+            <text transform="translate(4,20)" fill="silver">COMPW</text>
+            <path d="M -10.5,20 Q -7 28,-3.5 20 L 0,0 Q 3.5 -8,7 0 L 10.5 20 Q 14 28,17.5 20 T 24.5 20 T 31.5 20 " stroke="silver" style="stroke-width:2" transform="translate(19,30)" fill="transparent" />
+          </g>
+
+          <g class="sig_key" id="7" transform="translate(510,300)">
+            <rect height="60" width="60" rx=10 fill="#595959" opacity="0.7" filter="url(#f1)" />
+            <text transform="translate(4,20)" fill="silver">MUSIC</text>
+            <path d="M 0,0 Q -5 -8,-10 0 Q -5 8,0 0 Q -5 -10,3 -20 L 18,-20 Q 10 -10,15 0 Q 10 -8,5 0 Q 10 8,15 0 " stroke="silver" style="stroke-width:2" transform="translate(25,45)" fill="transparent" />
+          </g>
+
+          <g class="sig_key" id="11" transform="translate(580,300)">
+            <rect height="60" width="60" rx=10 fill="#595959" opacity="0.7" filter="url(#f1)" />
+            <text transform="translate(4,20)" fill="silver">SWEEP</text>
+            <path d="M 0,0 Q 5 -20,10 0 T 20 0 T 35 0" stroke="silver" style="stroke-width:2" transform="translate(10,35)" fill="transparent" />
+          </g>
+
+          <!-- 档位 -->
+          <g class="sig_key_1" id="1" transform="translate(750,270)">
+            <rect height="40" width="60" rx=10 fill="#595959" opacity="0.7" filter="url(#f1)" />
+            <text transform="translate(10,28)" fill="lime">X100</text>
+          </g>
+
+          <g class="sig_key_1" id="2" transform="translate(830,270)">
+            <rect height="40" width="60" rx=10 fill="#595959" opacity="0.7" filter="url(#f1)" />
+            <text transform="translate(15,28)" fill="silver">X1K</text>
+          </g>
+
+          <g class="sig_key_1" id="3" transform="translate(910,270)">
+            <rect height="40" width="60" rx=10 fill="#595959" opacity="0.7" filter="url(#f1)" />
+            <text transform="translate(10,28)" fill="silver">X10K</text>
+          </g>
+
+          <!-- 调节项目 -->
+          <g class="sig_key_2" id="1" transform="translate(750,320)">
+            <rect height="40" width="60" rx=10 fill="#595959" opacity="0.7" filter="url(#f1)" />
+            <text transform="translate(15,28)" fill="lime">频率</text>
+          </g>
+
+          <g class="sig_key_2" id="2" transform="translate(830,320)">
+            <rect height="40" width="60" rx=10 fill="#595959" opacity="0.7" filter="url(#f1)" />
+            <text transform="translate(15,28)" fill="silver">幅度</text>
+          </g>
+
+          <!-- 旋钮 -->
+          <g class="sigknob" id="kn1" transform="translate(750,50)">
+            <circle cx="80" cy="80" r="80"  fill="black" />
+            <circle cx="80" cy="80" r="55"  fill="white" />
+            <circle class="sigknobp" cx="80" cy="80" r="0.1" fill="transparent" />
+            <!-- <polygon points="32.37,52.5 127.63,52.5 80,135" style="fill:transparent;stroke: black;stroke-width:2" />
+            <polygon points="32.37,107.5 127.63,107.5 80,25" style="fill:transparent;stroke: black;stroke-width:2" /> -->
+            <rect width="10" height="35" style="fill:red;" transform='translate(75,30)' rx="2" filter="#f2" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 文件上传界面 -->
+<div class="modal fade" id="fileupload" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"> 
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+            <h4 class="modal-title" style="text-align: center;">程序下载</h4>
+        </div>
+        <div class="panel panel-default">  
+            <div class="panel-body">  
+                <input type="file" id="file" /> 
+                
+                <br />
+                <br /><button id="file_01">确认上传</button>
+                
+                
+                <progress id="progressOne" style="width:400px;" max="100" value="0"></progress>  
+                <blockquote id="Status" style="word-break:break-all;"></blockquote>  
+            </div>  
+        </div>  
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js_lib/bootstrap/bootstrap.js"></script>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/jquery.contextMenu.min.js"></script>
+<!-- websocket链接创建 -->
+<script type="text/javascript" src="experiment/defalut/js/websocket.js"></script>
+
+<!-- WebSocket上传  -->
+<script type="text/javascript" src="experiment/defalut/js/fileupload.js"></script>
+
+<!-- 示波器波形 -->
+<script type="text/javascript" src="experiment/defalut/js/oscwave.js"></script>
+
+<script type="text/javascript" src="experiment/defalut/js/pcm_cvsd_wave.js"></script>
+
+<script type="text/javascript" src="experiment/defalut/js/signalknob.js"></script>
+
+<script type="text/javascript">
+  var arph = 1; //svg缩放系数
+  var extable_data = {
+    ext_svg:[{h:731,w:1201}],
+    osc_bp_01:[{h:731,w:1201}],
+    osc_lp_01:[{cx:285,cy:639,r:10},{cx:315,cy:639,r:10},{cx:346,cy:639,r:10},{cx:377,cy:639,r:10}],
+    osc_lp_02:[{cx:959,cy:639,r:10},{cx:990,cy:639,r:10},{cx:1021,cy:639,r:10},{cx:1052,cy:639,r:10}],
+    A4_lp:[{cx:84,cy:223,r:14,ms:0},{cx:87,cy:287,r:14,ms:1},{cx:171,cy:70,r:14,ms:2},{cx:171,cy:382,r:14,ms:3},{cx:251,cy:71,r:14,ms:4},{cx:254,cy:383,r:14,ms:5},{cx:339,cy:71,r:14,ms:6},{cx:336,cy:383,r:14,ms:7},{cx:482,cy:120,r:14,ms:8},{cx:482,cy:336,r:14,ms:9},{cx:548,cy:225,r:14,ms:10},{cx:302,cy:220,r:14,ms:11}],
+    A5_lp:[{cx:646,cy:232,r:14,ms:0},{cx:762,cy:188,r:14,ms:1},{cx:914,cy:74,r:14,ms:2},{cx:920,cy:393,r:14,ms:3},{cx:994,cy:280,r:14,ms:4},{cx:1034,cy:77,r:14,ms:5},{cx:1034,cy:393,r:14,ms:6},{cx:1105,cy:76,r:14,ms:7},{cx:1104,cy:393,r:14,ms:8},{cx:1180,cy:238,r:14,ms:9}],
+    osc_re:[{x:137,y:550,h:102,w:130,ms:4},{x:811,y:550,h:102,w:130,ms:5}],
+  };
+
+  function extablereset(){
+    arph = (parseInt($(".extable").css("width")) - 20)/1201;
+    console.log(arph);
+    $(".osc_lp_01").each(function(){
+      var i = parseInt($(this).attr("i"));
+      var x = extable_data.osc_lp_01[i].cx*arph;
+      var y = extable_data.osc_lp_01[i].cy*arph;
+      var r = extable_data.osc_lp_01[i].r*arph;
+      $(this).attr({cx:x,cy:y,r:r});
+    });
+    $(".osc_lp_02").each(function(){
+      var i = parseInt($(this).attr("i"));
+      var x = extable_data.osc_lp_02[i].cx*arph;
+      var y = extable_data.osc_lp_02[i].cy*arph;
+      var r = extable_data.osc_lp_02[i].r*arph;
+      $(this).attr({cx:x,cy:y,r:r});
+    });
+    $(".A4_lp").each(function(){
+      var i = parseInt($(this).attr("i"));
+      var x = extable_data.A4_lp[i].cx*arph;
+      var y = extable_data.A4_lp[i].cy*arph;
+      var r = extable_data.A4_lp[i].r*arph;
+      $(this).attr({cx:x,cy:y,r:r});
+    });
+    $(".A5_lp").each(function(){
+      var i = parseInt($(this).attr("i"));
+      var x = extable_data.A5_lp[i].cx*arph;
+      var y = extable_data.A5_lp[i].cy*arph;
+      var r = extable_data.A5_lp[i].r*arph;
+      $(this).attr({cx:x,cy:y,r:r});
+    });
+    $(".osc_re").each(function(){
+      var i = parseInt($(this).attr("i"));
+      var x = extable_data.osc_re[i].x*arph;
+      var y = extable_data.osc_re[i].y*arph;
+      var h = extable_data.osc_re[i].h*arph;
+      var w = extable_data.osc_re[i].w*arph;
+      $(this).attr({x:x,y:y,height:h,width:w});
+    });
+    $(".osc_bp_01").each(function(){
+      var i = parseInt($(this).attr("i"));
+      var h = extable_data.osc_bp_01[i].h*arph;
+      var w = extable_data.osc_bp_01[i].w*arph;
+      $(this).attr({height:h,width:w});
+    });
+    $(".ext_table").each(function(){
+      var i = parseInt($(this).attr("i"));
+      var h = extable_data.ext_svg[i].h*arph;
+      var w = extable_data.ext_svg[i].w*arph;
+      $(this).attr({height:h,width:w});
+    });
+    $(".mapline1").each(function(){
+      var stp = eval($(this).attr("stp"));
+      var edp = eval($(this).attr("edp"));
+      // console.log(stp,edp,arph);
+      var sx = stp.cx * arph;
+      var sy = stp.cy * arph;
+      var ex = edp.cx * arph;
+      var ey = edp.cy * arph;
+      // console.log(extable_data);
+      var d = "M" + sx + " " + sy +" Q "+sx+" "+(sy-30)+","+(ex + sx)/2+" "+(sy+ey)/2+" Q "+ex+" "+(ey+30)+","+ex+" "+ey;
+      $(this).children("path").attr("d",d).each(function(i){
+        var x = (i == 0) ? 6 : 4;
+        $(this).attr("stroke-width",x*arph);
+      });
+    });
+    $(".mapline2").each(function(){
+      var stp = eval($(this).attr("stp"));
+      var edp = eval($(this).attr("edp"));
+      // console.log(stp,edp,arph);
+      var sx = stp.cx * arph;
+      var sy = stp.cy * arph;
+      var ex = edp.cx * arph;
+      var ey = edp.cy * arph;
+      // console.log(extable_data);
+      var d = "M" + sx + " " + sy +" Q "+sx+" "+(sy-30)+","+(ex + sx)/2+" "+(sy+ey)/2+" Q "+ex+" "+(ey+30)+","+ex+" "+ey;
+      $(this).children("path").attr("d",d).each(function(i){
+        var x = (i == 0) ? 6 : 4;
+        $(this).attr("stroke-width",x*arph);
+      });
+    });
+  }
+
+  (function(){
+    var ext_svg = d3.select(".extable")
+      .append("svg")
+      .attr({
+        height:730,
+        width:1201,
+        class:"ext_table",
+        i:0,
+      });
+
+    ext_svg.append("image")
+      .attr({
+        height:731,
+        width:1202,
+        class:"osc_bp_01", 
+        "xlink:href":"DQPSK.png",
+        i:0,
+      });
+
+    ext_svg.append("g")
+      .selectAll("circle")
+      .data(extable_data.osc_lp_01)
+      .enter()
+      .append("circle")
+      .attr({
+        cx:function(d,i){return d.cx;},
+        cy:function(d,i){return d.cy;},
+        r:function(d,i){return d.r;},
+        class:"osc_lp_01 ll",
+        ms:function(d,i){return i+1;},
+        i:function(d,i){return i;},
+        fill:"transparent",
+        opacity:0.5,
+      });
+
+    ext_svg.append("g")
+      .selectAll("circle")
+      .data(extable_data.osc_lp_02)
+      .enter()
+      .append("circle")
+      .attr({
+        cx:function(d,i){return d.cx;},
+        cy:function(d,i){return d.cy;},
+        r:function(d,i){return d.r;},
+        class:"osc_lp_02 ll",
+        ms:function(d,i){return i+1;},
+        i:function(d,i){return i;},
+        fill:"transparent",
+        opacity:0.5,
+      }); 
+
+    ext_svg.append("g")
+      .selectAll("circle")
+      .data(extable_data.A4_lp)
+      .enter()
+      .append("circle")
+      .attr({
+        m:4,
+        cx:function(d,i){return d.cx;},
+        cy:function(d,i){return d.cy;},
+        r:function(d,i){return d.r;},
+        class:"A4_lp ll",
+        ms:function(d,i){return d.ms;},
+        i:function(d,i){return i;},
+        fill:"transparent",
+        opacity:0.5,
+      });
+
+    ext_svg.append("g")
+      .selectAll("circle")
+      .data(extable_data.A5_lp)
+      .enter()
+      .append("circle")
+      .attr({
+        m:5,
+        cx:function(d,i){return d.cx;},
+        cy:function(d,i){return d.cy;},
+        r:function(d,i){return d.r;},
+        class:"A5_lp ll",
+        ms:function(d,i){return d.ms;},
+        i:function(d,i){return i;},
+        fill:"transparent",
+        opacity:0.5,
+      });
+
+    ext_svg.append("g")
+      .selectAll("rect")
+      .data(extable_data.osc_re)
+      .enter()
+      .append("rect")
+      .attr({
+        class:"osc_re ll",
+        ms:function(d,i){return d.ms;},
+        i:function(d,i){return i;},
+        x:function(d,i){return d.x;},
+        y:function(d,i){return d.y;},
+        height:function(d,i){return d.h;},
+        width:function(d,i){return d.w;},
+        fill:"transparent",
+        opacity:"0.5",
+        "data-toggle":"modal",
+        "data-target":"#module01",
+      });  
+  })();
+</script>
+
+
+<!-- 页面初始和重置事件 -->
+<script type="text/javascript">
+  (function(){
+    var height,width;
+    var topdif = parseInt($('.title').css('height')) + 10;
+
+    console.log(topdif);
+
+    addListeners();
+
+    // Event handling
+    function addListeners() {
+        // window.addEventListener('scroll', scrollCheck);
+        window.addEventListener('resize', resize);
+        window.addEventListener('load',init);
+    }
+
+    // function scrollCheck() {
+    //     if(document.body.scrollTop > height) animateHeader = false;
+    //     else animateHeader = true;
+    // }
+     
+    function init(){
+      // 设置文字不可被选中
+      document.onselectstart = function(){return false;}
+
+      // 创建websocket链接
+      createSocket();
+
+      // websend_fpga(0x0000,0x0003);
+
+      // console.log(1);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      // width = document.body.clientWidth;
+  
+     
+      $(".leftpanel").css({"height":(height-topdif)});
+      $(".showlist").css({"height":parseInt($(".leftpanel").height())+"px"});
+      $(".main").css({"height":(parseInt($(".leftpanel").height())+10)+"px","width":width,"background-size":width+"px "+(parseInt($(".leftpanel").height())+10)+"px"});
+      $("#cav_left").css({"height":$(".leftpanel").height(),"width":$(".leftpanel").width()});
+      $(".l_listCover").css({"width":$(".leftpanel").width()});
+      $(".fb").css({"top":(parseInt($(".showlist").height())-12)/2+"px"});
+
+      // modal
+      $(".extable").hide();
+      $(".expage_2").hide();
+      $(".expage_3").hide();
+      $(".expage").css({"height":height-topdif+10,"width":(width-250)});
+      $(".extext").css({"height":height-topdif+10,"width":(width-250)});
+
+      extablereset();
+    }
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      // width = document.body.clientWidth;
+        
+      
+      $(".leftpanel").css({"height":(height-topdif)});
+      $(".showlist").css({"height":parseInt($(".leftpanel").height())+"px"});
+      $(".main").css({"height":(parseInt($(".leftpanel").height())+10)+"px","width":width,"background-size":width+"px "+(parseInt($(".leftpanel").height())+10)+"px"});
+      $("#cav_left").css({"height":$(".leftpanel").height(),"width":$(".leftpanel").width()});
+      $(".fb").css({"top":(parseInt($(".showlist").height())-12)/2+"px"});
+      // $(".l_listCover").css({"width":$(".leftpanel").width()});
+      
+      // modal
+      $(".expage").css({"height":(parseInt($(".leftpanel").height())+10)});
+      $(".expage").css(
+        "width",function(){
+          if($(".showlist").attr("ms") == 1){return (width-250);}
+          else{return (width-20);}
+        }
+      );
+      $(".extext").css({"height":(parseInt($(".leftpanel").height())+10)});
+      $(".extext").css(
+        "width",function(){
+          if($(".showlist").attr("ms") == 1){return (width-250);}
+          else{return (width-20);}
+        }
+      );
+      extablereset();
+    }
+  })();
+    
+
+  (function(){
+    $(".showlist").click(function(){
+      if($(this).attr("ms") == 1){
+        $(".leftpanel").css("left","-220px");
+        $(this).css("left","0px");
+
+        $(".content").css("left","20px");
+        $(".expage").css("width",(window.innerWidth-30)+'px');
+        $(".extext").css("width",(window.innerWidth-30)+'px');
+        extablereset();
+        
+        $(".fb").removeClass("glyphicon-chevron-left");
+        $(".fb").addClass("glyphicon-chevron-right");
+        $(this).attr("ms","0");
+      }else{
+        $(".leftpanel").css("left","0px");
+        $(this).css("left","220px");
+
+        $(".content").css("left","240px");
+        $(".expage").css("width",(window.innerWidth-250)+'px');
+        $(".extext").css("width",(window.innerWidth-250)+'px');
+        extablereset();
+
+        $(".fb").removeClass("glyphicon-chevron-right");
+        $(".fb").addClass("glyphicon-chevron-left");
+        // $(".extable").css("left","240px");
+        // $(".exmainpage").css("left","240px");
+        // $(".expage_3").css("left","240px");
+        // $(".expage_2").css("left","240px");
+        $(this).attr("ms","1");
+      }
+    });
+
+    $(".leftbtn").click(function(){
+      $(".btn-1ea").removeClass("btn-1ea");
+      $(this).addClass("btn-1ea");
+      switch($(this).attr("ms")){
+        case "1":
+          serverstate = 0;
+          $(".extext").attr("src","html/3_1.html");
+          $(".extable").hide();
+          $(".expage_1").show();
+          $(".expage_2").hide();
+          $(".expage_3").hide();
+        break;
+        case "2":
+          serverstate = 0;
+          $(".extext").attr("src","html/3_2.html");
+          $(".extable").hide();
+          $(".expage_1").show();
+          $(".expage_2").hide();
+          $(".expage_3").hide();
+        break;
+        case "3":
+          serverstate = 0;
+          $(".extable").hide();
+          $(".expage_1").hide();
+          $(".expage_2").show();
+          $(".expage_3").hide();
+        break;
+        case "4":
+          serverstate = 0;
+          $(".main_iframe").attr("src","testex_03.html");
+          $(".extable").show();
+          $(".expage_1").hide();
+          $(".expage_2").hide();
+          $(".expage_3").hide();
+        break;
+        case "5":
+          serverstate = 11;
+          $(".extable").hide();
+          $(".expage_1").hide();
+          $(".expage_2").hide();
+          $(".expage_3").show();
+        break;
+      }
+    });
+
+    $(".fdl").each(function(){
+      $(this).mouseover(function(){
+      });
+      $(this).mouseleave(function(){
+      });
+      $(this).click(function(){
+        console.log(this.files);
+        deviceId = parseInt($(this).attr("ms"));
+        console.log("clickfile",fileuping);
+      });
+    });
+  })();
+
+
+	(function(){
+    //初始化
+    sig_textVal[1] = [];
+    sig_keyL[1] = 100;
+    sig_textVal[1][0] = 1000;
+    sig_textVal[1][1] = 13;
+    deviceId = 4;
+    $("#unit_1").hide();
+
+    // console.log($("#module01"));
+    //模态框
+    $("#module01").on("show.bs.modal",function(){
+      $("html").css({
+        "overflow-y":"hidden"
+      });
+      osc_stat = 1;
+      serverstate = 1;
+      ws.send(new Int8Array([0xFF,0xFE,deviceId,0x01]));
+      // ws.send(new Int8Array([0xff,0x04,0x00,0x0b,(0xff & deviceId),0x5a,0xa5,0x00,0x30,0xbb,0x80,0x00,0x00,(0xff & osc_stat),0x00,0x00]));
+      websend_fpga(0x8000,osc_stat);
+      websend_fpga_id(0x0000,0x0003,2);
+      
+      switch(oscMd){
+        case 0:
+          oscwavecreate();
+        break;
+        case 1:
+          serverstate = 3;
+          pcm_cvsd_sign = 11;
+          oscwavecreate();
+        break;
+        case 2:
+          osceyewavecreate();
+        break;
+        case 3:
+          oscxywavecreate();
+        break;
+      }
+      
+    });
+
+    // $("#module01").on("shown.bs.modal",function(){$(".modal-backdrop").remove();});
+
+    $("#module01").on("hide.bs.modal",function(){
+      $("html").css({
+        "overflow-y":"scroll"
+      });
+      // console.log(serverstate);
+      
+      osc_stat = 0;
+      serverstate = 0;
+      ws.send(new Int8Array([0xFF,0xFE,deviceId,0x00]));
+      websend_fpga(0x8000,osc_stat);
+      // ws.send(new Int8Array([0xff,0x04,0x00,0x0b,(0xff & deviceId),0x5a,0xa5,0x00,0x30,0xbb,0x80,0x00,0x00,(0xff & osc_stat),0x00,0x00]));
+      
+      //初始化数据
+      datastyle = [0,0,0,0];
+      datachV = new Array();
+      data_length = new Array();
+      osc_eye = new Array();
+      getData = new Array();
+      datach = 0;
+      di = 0;
+      switch(oscMd){
+        case 0:
+        case 1:
+          oscwave.selectAll('.oscline').remove();
+        break;
+        case 2:
+          oscwave.selectAll('.eyeline').remove();
+        break;
+        case 3:
+          oscwave2.selectAll('.oscline2').remove();
+          oscwave3.selectAll('circle').remove();
+        break;
+      }
+      
+    });
+
+    $(".osc_re").click(function(){
+      deviceId = parseInt($(this).attr("ms"));
+    });
+
+    $("#signal").on("show.bs.modal",function(){
+      $("html").css({
+        "overflow-y":"hidden"
+      });
+      deviceId = 1;
+    });
+
+    $("#signal").on("hide.bs.modal",function(){
+      $("html").css({
+        "overflow-y":"scroll"
+      });
+      deviceId = 4;
+    });
+
+    $("#module02").on("show.bs.modal",function(){
+      serverstate = 3;
+      pcm_cvsd_sign = 2;
+      osc_stat = 1;
+      ws.send(new Int8Array([0xFF,0x05,(0xff & deviceId),(0xff & pcm_cvsd_sign)]));
+      websend_fpga(0x8000,osc_stat);
+      websend_fpga(0x8011,0);
+      websend_fpga(0x8012,0);
+      websend_fpga(0x8013,0);
+      websend_fpga(0x8014,0);
+    });
+
+    $("#module02").on("hide.bs.modal",function(){
+      serverstate = 0;
+      osc_stat = 0;
+      pcm_cvsd_sign = 0;
+      $(this).attr("sign","1");
+      $(".rsk_t").text("RUN");
+      ws.send(new Int8Array([0xFF,0x05,(0xff & deviceId),0x00]));
+      ws.send(new Int8Array([0xFF,0xFE,(0xff & deviceId),0x00]));
+      websend_fpga(0x8000,osc_stat);
+    });
+
+  })();
+
+</script>
+
+
+
+<!-- 连线 -->
+<script type="text/javascript">
+  //连线
+  var maplinelock = 0;   //连线状态 {0：普通状态,1-8：连线状态}
+  var settedpoints = "";
+  var stpoints = {x:"",y:""};
+  var edpoints = {x:"",y:""};
+  var onchangeg,onchangeline,onchangeline2;
+  var oscpsetted = [0,0,0,0],oscpsetted2 = [0,0,0,0],osc_setsign = 0;
+
+  //禁用网页自带右键菜单
+  document.oncontextmenu = function(){
+    return false;
+  }
+  // console.log(window);
+  var $_table = $(".ext_table");
+  var $_oscp_01 = $(".osc_lp_01");
+  var $_oscp_02 = $(".osc_lp_02");
+
+  var $_modp_01 = $(".A4_lp");
+  var $_modp_02 = $(".A5_lp");
+
+
+  $_table.each(function(){
+    $(this).mousemove(function(){
+      if(maplinelock != 0)
+      {
+        // console.log(event.movementX,event.movementY);
+        // console.log(event);
+        var x1,y1,mapoffset={x:$_table.offset().left,y:$_table.offset().top};
+        x1 = event.pageX - mapoffset.x;
+        y1 = event.pageY - mapoffset.y +2;
+
+        // y1 = (y1 < stpoints.y) ? (y1 + 2) : (y1 - 2);
+        // console.log(x1,y1);
+        onchangeline.attr("d",settedpoints+" Q "+stpoints.x+" "+(stpoints.y-30)+","+(x1 + stpoints.x)/2+" "+(y1 + stpoints.y)/2+" Q "+x1+" "+(y1+30)+","+x1+" "+y1);
+        onchangeline2.attr("d",settedpoints+" Q "+stpoints.x+" "+(stpoints.y-30)+","+(x1 + stpoints.x)/2+" "+(y1 + stpoints.y)/2+" Q "+x1+" "+(y1+30)+","+x1+" "+y1);
+      }
+    });
+
+    //重设右键功能
+    $(this).mousedown(function(e){
+      // console.log(e);
+      if(e.button == 2 && maplinelock != 0)
+      {
+        onchangeg.remove();
+        maplinelock = 0;
+        settedpoints = "";
+        // console.log("你点了右键");
+      }
+    });
+  });
+
+  $_oscp_01.each(function(){
+    
+    $(this).click(function(){
+      var t = $(this);
+      var s = parseInt(t.attr("ms"));
+      osc_setsign = s;
+      if(maplinelock == 0 && oscpsetted[(s-1)] == 0)
+      {
+        
+        stpoints.x =  parseInt($(this).attr("cx"));
+        stpoints.y =  parseInt($(this).attr("cy"));
+        // console.log(111);
+        maplinelock = 4;
+        settedpoints += "M " + stpoints.x + " " + stpoints.y ;
+        onchangeg = d3.select(".ext_table").append("g").attr("class","mapline1").attr("ms",""+s).attr("stp","extable_data.osc_lp_01["+(s-1)+"]");
+        onchangeline2 = onchangeg.append("path")
+          .attr("stroke","black")
+          .attr("fill","none")
+          .attr("stroke-width",6*arph)
+          .attr("d",settedpoints+"");
+
+        onchangeline = onchangeg.append("path")
+          .attr("stroke",function(){
+            // console.log(t);
+            switch(s){
+              case 1:
+                return "#E7C331";
+              break;
+              case 2:
+                return "#00AED9";
+              break;
+              case 3:
+                return "#C319A0";
+              break;
+              case 4:
+                return "#00288A";
+              break;
+            }
+          })
+          .attr("fill","none")
+          .attr("stroke-width",4*arph)
+          .attr("d",settedpoints+"");
+
+        // $(".A2_table").css("cursor","url('myimages/111.cur')");  
+      }
+      
+    });
+
+    
+  });
+
+  $_oscp_02.each(function(){
+    
+    $(this).click(function(){
+      // console.log(oscpsetted2);
+      var t = $(this);
+      var s = parseInt(t.attr("ms"));
+      osc_setsign = s;
+      if(maplinelock == 0 && oscpsetted2[(s-1)] == 0)
+      {
+        stpoints.x =  parseInt($(this).attr("cx"));
+        stpoints.y =  parseInt($(this).attr("cy"));
+        maplinelock = 5;
+        settedpoints += "M " + stpoints.x + " " + stpoints.y ;
+        onchangeg = d3.select(".ext_table").append("g").attr("class","mapline2").attr("ms",""+s).attr("stp","extable_data.osc_lp_02["+(s-1)+"]");
+        onchangeline2 = onchangeg.append("path")
+          .attr("stroke","black")
+          .attr("fill","none")
+          .attr("stroke-width","6")
+          .attr("d",settedpoints+"");
+
+        onchangeline = onchangeg.append("path")
+          .attr("stroke",function(){
+            // console.log(t);
+            switch(s){
+              case 1:
+                return "#E7C331";
+              break;
+              case 2:
+                return "#00AED9";
+              break;
+              case 3:
+                return "#C319A0";
+              break;
+              case 4:
+                return "#00288A";
+              break;
+            }
+          })
+          .attr("fill","none")
+          .attr("stroke-width","4")
+          .attr("d",settedpoints+"");
+
+        // $(".A2_table").css("cursor","url('myimages/111.cur')");  
+      }
+      
+    });
+
+    
+  });
+
+  $_modp_01.each(function(){
+    
+    $(this).click(function(){
+      var t = $(this);
+      var m = parseInt(t.attr("m"));
+      var ms = parseInt(t.attr("ms"));
+      var i = parseInt(t.attr("i"));
+      // console.log("maplinelock:"+maplinelock,"m:"+m);
+      if(maplinelock == m)
+      {
+        edpoints.x =  parseInt($(this).attr("cx"));
+        edpoints.y =  parseInt($(this).attr("cy"));
+        settedpoints += settedpoints+" Q "+stpoints.x+" "+(stpoints.y-30)+","+(edpoints.x + stpoints.x)/2+" "+(stpoints.y+edpoints.y)/2+" Q "+edpoints.x+" "+(edpoints.y+30)+","+edpoints.x+" "+edpoints.y;
+        maplinelock = 0;
+        onchangeg.attr("edp","extable_data.A4_lp["+i+"]");
+        onchangeline.attr("d",settedpoints+"");
+        onchangeline2.attr("d",settedpoints+"");
+        settedpoints = "";
+        
+        // console.log($());
+        $.contextMenu({
+            selector: '.mapline1', 
+            callback: function(key, options) {
+                if(key == "delete"){
+                  $(this).remove();
+                  oscpsetted[parseInt($(this).attr("ms")) - 1] = 0;
+                }
+            },
+            items: {
+                "delete": {name: "删除连线", icon: "delete"},
+                // "sep1": "---------",
+                // "quit": {name: "Quit", icon: function(){
+                //     return 'context-menu-icon context-menu-icon-quit';
+                // }}
+            }
+        });
+       
+        oscpsetted[osc_setsign-1] = 1;
+        deviceId = 4;
+        websend_fpga(0x8010+osc_setsign,ms);
+        console.log("addr: 0x%s,val: %d",(0x8010+osc_setsign).toString(16),ms);
+      }
+    });
+
+    
+  });
+
+  $_modp_02.each(function(){
+    
+    $(this).click(function(){
+      // console.log(oscpsetted2);
+      var t = $(this);
+      var m = parseInt(t.attr("m"));
+      var ms = parseInt(t.attr("ms"));
+      var i = parseInt(t.attr("i"));
+      if(maplinelock == m)
+      {
+        edpoints.x =  parseInt($(this).attr("cx"));
+        edpoints.y =  parseInt($(this).attr("cy"));
+        settedpoints += settedpoints+" Q "+stpoints.x+" "+(stpoints.y-30)+","+(edpoints.x + stpoints.x)/2+" "+(stpoints.y+edpoints.y)/2+" Q "+edpoints.x+" "+(edpoints.y+30)+","+edpoints.x+" "+edpoints.y;
+        maplinelock = 0;
+        onchangeg.attr("edp","extable_data.A5_lp["+i+"]");
+        onchangeline.attr("d",settedpoints+"");
+        onchangeline2.attr("d",settedpoints+"");
+        settedpoints = "";
+        
+        // console.log($());
+        $.contextMenu({
+            selector: '.mapline2', 
+            callback: function(key, options) {
+                if(key == "delete"){
+                  $(this).remove();
+                  oscpsetted2[parseInt($(this).attr("ms")) - 1] = 0;
+                }
+            },
+            items: {
+                "delete": {name: "删除连线", icon: "delete"},
+                // "sep1": "---------",
+                // "quit": {name: "Quit", icon: function(){
+                //     return 'context-menu-icon context-menu-icon-quit';
+                // }}
+            }
+        });
+        // console.log(1,oscpsetted2,osc_setsign);
+        oscpsetted2[osc_setsign-1] = 1;
+        deviceId = 5;
+        websend_fpga(0x8010+osc_setsign,ms);
+        console.log("addr: 0x%s,val: %d",(0x8010+osc_setsign).toString(16),ms);
+      }
+    });
+
+
+  });
+
+</script>
+
+
+</body>
+</html>
